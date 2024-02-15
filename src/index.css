@@ -25809,3 +25809,7 @@ input[type=number].cart-product-quantity-input {
   margin: 0 !important;
   padding: 0 !important;
 }
+
+.main{
+  min-height: 70vh;
+}

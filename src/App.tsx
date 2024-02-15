@@ -32,7 +32,10 @@ function App() {
       <Preloader load={load} />
       <Header setShowNavMobile={setShowNavMobile} />
       {isMobile ? <MobileNavWrapper showNavMobile={showNavMobile} setShowNavMobile={setShowNavMobile} /> : null}
-      <Footer/>
+      <div className="main">
+        
+      </div>
+      <Footer />
     </div>
   )
 }
