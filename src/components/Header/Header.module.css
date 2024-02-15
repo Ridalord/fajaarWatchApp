@@ -1,0 +1,37 @@
+.select{
+  color: #fff ;
+  max-width: fit-content;
+  display: flex;
+  
+}
+.select>option{
+  color: #222222;
+  cursor: pointer;
+  /* font-weight: 400; */
+  line-height: 40px;
+  list-style: none;
+  min-height: 40px;
+  outline: none;
+  padding-left: 30px;
+  padding-right: 29px;
+  text-align: left;
+}
+
+/* WebKit (Safari, Chrome) */
+.select::-webkit-select-dropdown {
+  border-radius: 10px !important;
+  color: #222222 !important;
+  /* Adjust the border radius as needed */
+}
+
+/* Firefox */
+.select::-moz-select-dropdown {
+  border-radius: 10px;
+  /* Adjust the border radius as needed */
+}
+
+/* Edge */
+.select::-ms-expand {
+  border-radius: 10px;
+  /* Adjust the border radius as needed */
+}

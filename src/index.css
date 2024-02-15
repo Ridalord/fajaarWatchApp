@@ -130,6 +130,8 @@ body {
   line-height: 1.5;
   background-color: var(--clr-common-white);
   width: 100%;
+  /* padding: 0; */
+  margin: 0;
 }
 
 h1,
@@ -3433,8 +3435,10 @@ a.fz-hamburger {
   height: 40px;
   border: 1px solid #d9d9d9;
   border-radius: 50%;
+  display: flex;
   aspect-ratio: 1;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
   line-height: 40px;
 }
 
@@ -25798,3 +25802,8 @@ input[type=number].cart-product-quantity-input {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.App{
+  margin: 0 !important;
+  padding: 0 !important;
+}

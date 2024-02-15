@@ -1,0 +1,36 @@
+.accordionWrap{
+  border-color: #fff !important;
+}
+.accordionWrap>div{
+  border: none;
+  background-color: transparent !important;
+}
+.accordionHeader > button{
+  padding: 0 !important;
+  background-color: transparent !important;
+  font-size: 20px;
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+  color: #222222 !important;
+}
+
+.accordionHeader>button::after{
+  color: #222222 !important;
+  font-weight: 500 !important;
+}
+
+.accordionBody{
+  padding: 0 !important;
+  border: none;
+}
+
+.circledIcon{
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: 10px;
+}
