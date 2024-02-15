@@ -19000,12 +19000,12 @@ a.fz-hamburger {
 }
 
 .fz-6-footer-top {
-  padding: 80px 0;
+  padding: 40px 20px;
 }
 
 @media screen and (max-width: 991px) {
   .fz-6-footer-top {
-    padding: 60px 0;
+    padding: 30px 0;
   }
 }
 
@@ -19024,6 +19024,7 @@ a.fz-hamburger {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
 }
 
 .fz-6-footer .fz-3-footer-widget ul a {
@@ -19094,7 +19095,7 @@ a.fz-hamburger {
 }
 
 .fz-7-footer-header {
-  padding: 60px 0;
+  padding: 30px 0;
   background-color: #ffffff;
 }
 
@@ -19126,13 +19127,14 @@ a.fz-hamburger {
 
 @media screen and (max-width: 1199px) {
   .fz-7-footer-top {
-    padding: 60px 0;
+    padding: 30px 0 0;
   }
 }
 
 .fz-7-footer .fz-3-footer-widget__title {
   font-size: 18px;
   color: #191919;
+  text-align: center;
 }
 
 @media screen and (max-width: 1199px) {
@@ -19159,7 +19161,7 @@ a.fz-hamburger {
 }
 
 .fz-7-footer-bottom {
-  padding: 30px 0;
+  padding: 0;
 }
 
 .fz-7-footer-bottom .fz-3-copyright {
