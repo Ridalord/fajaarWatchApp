@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Preloader from "./components/Preloader/Preloader"
 import Header from "./components/Header/Header"
 import MobileNavWrapper from "./components/Header/MobileNavWrapper";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <Preloader load={load} />
       <Header setShowNavMobile={setShowNavMobile} />
       {isMobile ? <MobileNavWrapper showNavMobile={showNavMobile} setShowNavMobile={setShowNavMobile} /> : null}
+      <Footer/>
     </div>
   )
 }
