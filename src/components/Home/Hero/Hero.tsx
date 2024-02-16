@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Fz7Banner from "./fz-7-banner-1.jpg"
 import HeroItem from "./HeroItem";
 import { ReactElement } from "react";
-
+import Image from "./rendering-smart-home-device.jpg"
+import Image2 from "./rendering-smart-home-device (1).jpg"
 
 
 type SettingTypes = {
@@ -37,12 +38,12 @@ const HeroData: HeroDataType = [
   {
     id: 2,
     title: "Smart Watch",
-    image: Fz7Banner
+    image: Image
   },
   {
     id: 2,
     title: "Smart Watch",
-    image: Fz7Banner
+    image: Image2
   },
 ]
 
