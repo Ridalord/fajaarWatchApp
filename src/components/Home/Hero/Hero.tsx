@@ -1,10 +1,11 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import HeroBanner1 from "./fz-7-banner-1.jpg"
-import Button from "../../Button/Button";
 import { faFacebookF, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Fz7Banner from "./fz-7-banner-1.jpg"
+import HeroItem from "./HeroItem";
+import { ReactElement } from "react";
 
 
 
@@ -18,6 +19,32 @@ type SettingTypes = {
   autoplaySpeed: number,
   arrows: boolean
 }
+
+type SliderDetailsType = {
+  title: string,
+  image: string,
+  id: number
+}
+
+type HeroDataType = SliderDetailsType[]
+
+const HeroData: HeroDataType = [
+  {
+    id: 1,
+    title: "Smart Watch",
+    image: Fz7Banner
+  },
+  {
+    id: 2,
+    title: "Smart Watch",
+    image: Fz7Banner
+  },
+  {
+    id: 2,
+    title: "Smart Watch",
+    image: Fz7Banner
+  },
+]
 
 export default function Hero() {
   const settings: SettingTypes = {
@@ -33,56 +60,11 @@ export default function Hero() {
   return(
     <div className="fz-6-banner fz-7-banner">
       <Slider {...settings} className="fz-7-banner-slider owl-carousel fz-7-body">
-        <div className="fz-6-banner-slide fz-7-banner-slide bg-default owl-item">
-          <div className="container">
-            <div className="row justify-content-center g-5">
-              <div className="col-lg-6 col-md-8">
-                <div className="fz-6-banner-txt">
-                  <h1 className="fz-6-banner-title">Smart Digital Watch</h1>
-                  <Button text="Shop Now" link="/shop"/>
-                </div>
-              </div>
+        {HeroData.map((item: SliderDetailsType): ReactElement => (
+          <HeroItem image={item.image} title={item.title} key={item.id} />
+        ))}
 
-              <div className="col-lg-6 text-end">
-                <img src={HeroBanner1} alt="product image" className="fz-7-banner-img"/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="fz-6-banner-slide fz-7-banner-slide bg-default">
-          <div className="container">
-            <div className="row justify-content-center g-5">
-              <div className="col-lg-6 col-md-8">
-                <div className="fz-6-banner-txt">
-                  <h1 className="fz-6-banner-title">Smart Digital Watch</h1>
-                  <Button text="Shop Now" link="/shop"/>
-                </div>
-              </div>
-
-              <div className="col-lg-6 text-end">
-                <img src={HeroBanner1} alt="product image" className="fz-7-banner-img"/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="fz-6-banner-slide fz-7-banner-slide bg-default">
-          <div className="container">
-            <div className="row justify-content-center g-5">
-              <div className="col-lg-6 col-md-8">
-                <div className="fz-6-banner-txt">
-                  <h1 className="fz-6-banner-title">Smart Digital Watch</h1>
-                  <Button text="Shop Now" link="/shop"/>
-                </div>
-              </div>
-
-              <div className="col-lg-6 text-end">
-                <img src={HeroBanner1} alt="product image" className="fz-7-banner-img"/>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </Slider>
 
       <div className="container fz-7-banner-socials-container">
