@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Preloader from "./components/Preloader/Preloader"
 import Header from "./components/Header/Header"
 import MobileNavWrapper from "./components/Header/MobileNavWrapper";
 import Footer from "./components/Footer/Footer";
+import Home from "./components/Home/Home";
 
 
 function App() {
@@ -28,15 +30,19 @@ function App() {
     setLoad(true)
   })
   return (
-    <div className="App">
-      <Preloader load={load} />
-      <Header setShowNavMobile={setShowNavMobile} />
-      {isMobile ? <MobileNavWrapper showNavMobile={showNavMobile} setShowNavMobile={setShowNavMobile} /> : null}
-      <div className="main">
-        
+    <Router>
+      <div className="App">
+        <Preloader load={load} />
+        <Header setShowNavMobile={setShowNavMobile} />
+        {isMobile ? <MobileNavWrapper showNavMobile={showNavMobile} setShowNavMobile={setShowNavMobile} /> : null}
+        <div className="main">
+          <Routes>
+            <Route path='/' element={<Home />} />
+          </Routes>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </Router>
   )
 }
 
