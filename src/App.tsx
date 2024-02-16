@@ -5,12 +5,14 @@ import Header from "./components/Header/Header"
 import MobileNavWrapper from "./components/Header/MobileNavWrapper";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
+import SearchBarModal from "./components/SearchBarModal/SearchBarModal";
 
 
 function App() {
   const [load, setLoad] = useState(false)
   const [isMobile, setIsMobile] = useState(false);
   const [showNavMobile, setShowNavMobile] = useState(false)
+  const [showSearchBar, setShowSearchBar] = useState(true)
 
   useEffect(() => {
     const checkWindowWidth = () => {
@@ -24,7 +26,6 @@ function App() {
       window.removeEventListener("resize", checkWindowWidth);
     };
   }, []);
-  // console.log(showNavMobile)
 
   window.addEventListener('load', () => {
     setLoad(true)
@@ -41,6 +42,7 @@ function App() {
           </Routes>
         </div>
         <Footer />
+        {showSearchBar ? <SearchBarModal setShowSearchBar={setShowSearchBar} showSearchBar={showSearchBar} />: null}
       </div>
     </Router>
   )
