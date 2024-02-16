@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import HeroBanner1 from "./fz-7-banner-1.jpg"
+import Button from "../../Button/Button";
 
 type SettingTypes = {
   dots: boolean,
@@ -34,7 +35,7 @@ export default function Hero() {
               <div className="col-lg-6 col-md-8">
                 <div className="fz-6-banner-txt">
                   <h1 className="fz-6-banner-title">Smart Digital Watch</h1>
-                  <a href="#" className="fz-6-banner-btn fz-6-sub-banner-btn">Shop Now</a>
+                  <Button text="Shop Now" link="/shop"/>
                 </div>
               </div>
 
@@ -51,7 +52,7 @@ export default function Hero() {
               <div className="col-lg-6 col-md-8">
                 <div className="fz-6-banner-txt">
                   <h1 className="fz-6-banner-title">Smart Digital Watch</h1>
-                  <a href="#" className="fz-6-banner-btn fz-6-sub-banner-btn">Shop Now</a>
+                  <Button text="Shop Now" link="/shop"/>
                 </div>
               </div>
 
@@ -68,7 +69,7 @@ export default function Hero() {
               <div className="col-lg-6 col-md-8">
                 <div className="fz-6-banner-txt">
                   <h1 className="fz-6-banner-title">Smart Digital Watch</h1>
-                  <a href="#" className="fz-6-banner-btn fz-6-sub-banner-btn">Shop Now</a>
+                  <Button text="Shop Now" link="/shop"/>
                 </div>
               </div>
 
