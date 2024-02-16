@@ -12,7 +12,7 @@ function App() {
   const [load, setLoad] = useState(false)
   const [isMobile, setIsMobile] = useState(false);
   const [showNavMobile, setShowNavMobile] = useState(false)
-  const [showSearchBar, setShowSearchBar] = useState(true)
+  const [showSearchBar, setShowSearchBar] = useState(false)
 
   useEffect(() => {
     const checkWindowWidth = () => {
@@ -34,7 +34,7 @@ function App() {
     <Router>
       <div className="App">
         <Preloader load={load} />
-        <Header setShowNavMobile={setShowNavMobile} />
+        <Header setShowNavMobile={setShowNavMobile} setShowSearchBar={setShowSearchBar} />
         {isMobile ? <MobileNavWrapper showNavMobile={showNavMobile} setShowNavMobile={setShowNavMobile} /> : null}
         <div className="main">
           <Routes>

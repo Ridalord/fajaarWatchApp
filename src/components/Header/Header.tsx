@@ -7,11 +7,16 @@ import classes from "./Header.module.css"
 
 type PropTypes = {
   setShowNavMobile: React.Dispatch<React.SetStateAction<boolean>>,
+  setShowSearchBar: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function Header({ setShowNavMobile }: PropTypes) {
+export default function Header({ setShowNavMobile, setShowSearchBar }: PropTypes) {
   const handleMenuClick = () => {
     setShowNavMobile(prev => !prev)
+  }
+
+  const handleClickSearch = () => {
+    setShowSearchBar(prev => !prev)
   }
   return (
     <header className="fz-header-section fz-1-header-section fz-7-header">
@@ -67,30 +72,9 @@ export default function Header({ setShowNavMobile }: PropTypes) {
                 <ul className="align-items-center">
                   <li className="fz-dropdown fz-nav-item">
                     <a role="button" className="fz-nav-link"><span>home</span></a>
-
-                    {/* <ul className="fz-submenu">
-                      <li><a href="index.html" className="fz-nav-link fz-submenu-nav-link">Door Shop</a></li>
-                      <li><a href="index-2.html" className="fz-nav-link fz-submenu-nav-link">Jewelry Shop</a></li>
-                      <li><a href="index-3.html" className="fz-nav-link fz-submenu-nav-link">Cake Shop</a></li>
-                      <li><a href="index-4.html" className="fz-nav-link fz-submenu-nav-link">Electric Shop</a></li>
-                      <li><a href="index-5.html" className="fz-nav-link fz-submenu-nav-link">Sunglass Shop</a></li>
-                      <li><a href="index-6.html" className="fz-nav-link fz-submenu-nav-link">Car Parts Shop</a></li>
-                      <li><a href="index-7.html" className="fz-nav-link fz-submenu-nav-link">Watch Shop</a></li>
-                      <li><a href="index-8.html" className="fz-nav-link fz-submenu-nav-link">Cycle Shop</a></li>
-                      <li><a href="index-9.html" className="fz-nav-link fz-submenu-nav-link">Kid's Cloth Shop</a></li>
-                      <li><a href="index-10.html" className="fz-nav-link fz-submenu-nav-link">Bag Shop 01</a></li>
-                      <li><a href="index-11.html" className="fz-nav-link fz-submenu-nav-link">CCTV Shop</a></li>
-                      <li><a href="index-12.html" className="fz-nav-link fz-submenu-nav-link">Bag Shop 02</a></li>
-                    </ul> */}
                   </li>
                   <li className="fz-dropdown fz-nav-item">
                     <a role="button" className="fz-nav-link"><span>shop</span> </a>
-
-                    {/* <ul className="fz-submenu">
-                      <li><a href="shop.html" className="fz-nav-link fz-submenu-nav-link">Shop</a></li>
-                      <li><a href="shop-2.html" className="fz-nav-link fz-submenu-nav-link">Shop 02</a></li>
-                      <li><a href="shop-details.html" className="fz-nav-link fz-submenu-nav-link">shop details</a></li>
-                    </ul> */}
                   </li>
                   <li className="fz-dropdown fz-nav-item">
                     <a role="button" className="fz-nav-link"><span>pages</span> +</a>
@@ -105,11 +89,6 @@ export default function Header({ setShowNavMobile }: PropTypes) {
                   </li>
                   <li className="fz-dropdown fz-nav-item">
                     <a role="button" className="fz-nav-link">blog </a>
-
-                    {/* <ul className="fz-submenu">
-                      <li><a href="blog.html" className="fz-nav-link fz-submenu-nav-link">Blog</a></li>
-                      <li><a href="blog-details.html" className="fz-nav-link fz-submenu-nav-link">Blog-details</a></li>
-                    </ul> */}
                   </li>
                   <li className="fz-nav-item"><a href="contact.html" className="fz-nav-link">contact</a></li>
                 </ul>
@@ -128,7 +107,7 @@ export default function Header({ setShowNavMobile }: PropTypes) {
               <div className="fz-header-right-content">
                 <ul className="fz-header-right-actions d-flex align-items-center justify-content-end">
                   <li>
-                    <a role="button" className="fz-header-search-btn fz-2-search-btn d-none d-lg-block">
+                    <a role="button" className="fz-header-search-btn fz-2-search-btn d-none d-lg-block" onClick={handleClickSearch}>
                       <Search/>
                     </a>
                   </li>
