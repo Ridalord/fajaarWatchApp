@@ -5513,7 +5513,7 @@ a.fz-hamburger {
   }
 }
 
-.fz-2-banner-section .fz-overlay {
+.fz-overlay {
   position: fixed;
   left: 0;
   top: 0;
@@ -5526,7 +5526,7 @@ a.fz-hamburger {
   z-index: 99911;
 }
 
-.fz-2-banner-section .fz-overlay.open {
+.fz-overlay.open {
   opacity: 1;
   visibility: visible;
 }
