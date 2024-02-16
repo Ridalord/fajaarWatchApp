@@ -3,6 +3,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import HeroBanner1 from "./fz-7-banner-1.jpg"
 import Button from "../../Button/Button";
+import { faFacebookF, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
 
 type SettingTypes = {
   dots: boolean,
@@ -84,9 +88,9 @@ export default function Hero() {
       <div className="container fz-7-banner-socials-container">
         <div className="fz-6-banner-socials">
           <ul>
-            <li><a href="#"><i className="fa-brands fa-facebook-f"></i></a></li>
-            <li><a href="#"><i className="fa-brands fa-linkedin-in"></i></a></li>
-            <li><a href="#"><i className="fa-brands fa-twitter"></i></a></li>
+            <li><a href="#"><FontAwesomeIcon icon={faFacebookF}/></a></li>
+            <li><a href="#"><FontAwesomeIcon icon={faLinkedin}/></a></li>
+            <li><a href="#"><FontAwesomeIcon icon={faTwitter}/></a></li>
           </ul>
           <h6>Follow us</h6>
         </div>
