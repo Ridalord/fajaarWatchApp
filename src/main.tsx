@@ -4,9 +4,12 @@ import App from './App.tsx'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.min.css';
 import './index.css'
+import { ProductsProvider } from './components/context/ProductsProvider.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <ProductsProvider>
+      <App />
+    </ProductsProvider>
   </React.StrictMode>,
 )
