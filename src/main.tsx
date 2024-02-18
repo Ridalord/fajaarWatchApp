@@ -6,12 +6,15 @@ import 'font-awesome/css/font-awesome.min.css';
 import './index.css'
 import { ProductsProvider } from './components/context/ProductsProvider.tsx';
 import { WishlistProvider } from './components/context/WishlistProvider.tsx';
+import { CartProvider } from './components/context/CartProvider.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ProductsProvider>
       <WishlistProvider>
-        <App />
+        <CartProvider>
+          <App />
+        </CartProvider>
       </WishlistProvider>
     </ProductsProvider>
   </React.StrictMode>,
