@@ -92,7 +92,7 @@ const useCartContext = (initCartState: CartStateType) => {
     return REDUCER_ACTON_TYPE
   }, [])
 
-  const totalItems: number = state.cart.reduce((previousValue, cartItem) => {
+  const totalCartItems: number = state.cart.reduce((previousValue, cartItem) => {
     return previousValue + cartItem.quantity;
   }, 0)
 
@@ -104,7 +104,7 @@ const useCartContext = (initCartState: CartStateType) => {
 
   const cart = state.cart
 
-  return { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart }
+  return { dispatch, REDUCER_ACTIONS, totalCartItems, totalPrice, cart }
 }
 
 export type UseCartContextType = ReturnType<typeof useCartContext>
@@ -112,7 +112,7 @@ export type UseCartContextType = ReturnType<typeof useCartContext>
 const initCartContextState: UseCartContextType = {
   dispatch: () => { },
   REDUCER_ACTIONS: REDUCER_ACTON_TYPE,
-  totalItems: 0,
+  totalCartItems: 0,
   totalPrice: '',
   cart: []
 }
