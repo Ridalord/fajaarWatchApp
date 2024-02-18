@@ -56,8 +56,9 @@ const useWishlistContext = (initWishlistState: WishlistStateType) => {
   }, [])
 
   const wishlist = state.wishlist
+  const totalWishlistItem = wishlist.length
 
-  return {dispatch, REDUCER_ACTIONS, wishlist}
+  return {dispatch, REDUCER_ACTIONS, wishlist, totalWishlistItem}
 }
 
 export type UseWishlistContextType = ReturnType<typeof useWishlistContext>
@@ -65,7 +66,8 @@ export type UseWishlistContextType = ReturnType<typeof useWishlistContext>
 const initWishlistContextState: UseWishlistContextType = {
   dispatch: () => { },
   REDUCER_ACTIONS: REDUCER_ACTION_TYPE,
-  wishlist: []
+  wishlist: [],
+  totalWishlistItem: 0
 }
 
 export const WishlistContext = createContext(initWishlistContextState)
