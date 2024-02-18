@@ -1,6 +1,5 @@
-import { ReactElement, useMemo, useReducer } from "react";
+import { ReactElement, useMemo, useReducer, createContext } from "react";
 import { ProductType } from "./ProductsProvider";
-import { createContext } from "vm";
 
 type WishlistStateType = { wishlist: ProductType[] }
 
