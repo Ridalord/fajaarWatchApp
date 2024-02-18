@@ -4,6 +4,8 @@ import {  Bag, Search, List } from "react-bootstrap-icons";
 import { faFacebookF, faTwitter, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import Logo7dark from "./logo-7-dark.png"
 import classes from "./Header.module.css"
+import useCart from '../hooks/useCart';
+import useWishlist from '../hooks/useWishlist';
 
 type PropTypes = {
   setShowNavMobile: React.Dispatch<React.SetStateAction<boolean>>,
@@ -11,6 +13,10 @@ type PropTypes = {
 }
 
 export default function Header({ setShowNavMobile, setShowSearchBar }: PropTypes) {
+  const { totalCartItems } = useCart()
+  const { totalWishlistItems } = useWishlist()
+
+
   const handleMenuClick = () => {
     setShowNavMobile(prev => !prev)
   }
@@ -117,8 +123,9 @@ export default function Header({ setShowNavMobile, setShowSearchBar }: PropTypes
                     </a>
                   </li>
                   <li>
-                    <a role="button" className="fz-header-wishlist-btn d-none d-lg-block">
+                    <a role="button" className="fz-header-wishlist-btn fz-header-cart-btn d-none d-lg-block">
                       <FontAwesomeIcon icon={faHeart} />
+                      <span className="count">0</span>
                     </a>
                   </li>
                   <li>
