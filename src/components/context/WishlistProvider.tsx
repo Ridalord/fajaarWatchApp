@@ -79,3 +79,5 @@ export const WishlistProvider = ({ children }: ChildrenType): ReactElement => {
     </WishlistContext.Provider>
   )
 }
+
+export default WishlistContext
