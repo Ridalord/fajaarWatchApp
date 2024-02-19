@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import SearchBarModal from "./components/SearchBarModal/SearchBarModal";
 import WishlistModal from "./components/WishlistModal/WishlistModal";
+import CartModal from "./components/CartModal/CartModal";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   const [isMobile, setIsMobile] = useState(false);
   const [showNavMobile, setShowNavMobile] = useState(false)
   const [showSearchBar, setShowSearchBar] = useState(false)
+  const [showCart, setShowCart] = useState(false)
   const [showWishlist, setShowWishlist] = useState(false)
 
   useEffect(() => {
@@ -46,6 +48,7 @@ function App() {
         <Footer />
         {showSearchBar ? <SearchBarModal setShowSearchBar={setShowSearchBar} showSearchBar={showSearchBar} /> : null}
         {showWishlist ? <WishlistModal setShowWishlist={setShowWishlist} showWishlist={showWishlist} /> : null}
+        {showCart ? <CartModal showCart={showCart} setShowCart={setShowCart} />: null}
       </div>
     </Router>
   )
