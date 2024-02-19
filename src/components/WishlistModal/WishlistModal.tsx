@@ -3,6 +3,7 @@ import useWishlist from "../hooks/useWishlist"
 import WishlistModalItem from "./WishlistModalItem"
 import { CartItemType } from "../context/CartProvider"
 import { X } from "react-bootstrap-icons";
+import Button from "../Button/Button";
 
 
 type PropTypes = {
@@ -17,7 +18,7 @@ export default function WishlistModal({showWishlist, setShowWishlist}: PropTypes
   }
   return (
     <div className={`overlay ${showWishlist? 'open': null}`}>
-      <div className="cart-area cart-area-modal fz-wishlist-modal">
+      <div className={`cart-area cart-area-modal fz-7-body fz-wishlist-modal ${showWishlist? 'open': null}`}>
         <div className="cart__header">
           <h3 className="cart__title">Your Wishlist</h3>
           <button className="cart-area-modal-close-btn" onClick={onCloseWishlist}><X/></button>
@@ -50,7 +51,8 @@ export default function WishlistModal({showWishlist, setShowWishlist}: PropTypes
           </table>
 
           <div className="cart-left-actions d-flex justify-content-end">
-            <a href="cart.html" className="fz-1-banner-btn update-cart-btn">Go to cart</a>
+            {/* <a href="cart.html" className="fz-1-banner-btn update-cart-btn">Go to cart</a> */}
+            <Button text="Go to cart" link="cart.html" type="cart"/>
           </div>
         </div>
       </div>

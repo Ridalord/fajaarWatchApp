@@ -14,7 +14,7 @@ export default function HeroItem({title, image}: PropTypes) {
           <div className="col-lg-6 col-md-8">
             <div className="fz-6-banner-txt">
               <h1 className="fz-6-banner-title">{title}</h1>
-              <Button text="Shop Now" link="/shop" />
+              <Button text="Shop Now" link="/shop" type="banner" />
             </div>
           </div>
 

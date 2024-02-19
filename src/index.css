@@ -25836,3 +25836,7 @@ body::-webkit-scrollbar-thumb:hover {
 .main{
   min-height: 70vh;
 }
+
+table{
+  width: 100%;
+}
