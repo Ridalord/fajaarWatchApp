@@ -1,7 +1,7 @@
 import { ReactElement } from "react"
-import { ProductType } from "../context/ProductsProvider"
 import useWishlist from "../hooks/useWishlist"
 import WishlistModalItem from "./WishlistModalItem"
+import { CartItemType } from "../context/CartProvider"
 
 export default function WishlistModal() {
   const { wishlist } = useWishlist()
@@ -20,17 +20,21 @@ export default function WishlistModal() {
               <th>Product</th>
               <th>price</th>
               <th>action</th>
-              <th>total</th>
               <th>remove</th>
             </tr>
           </thead>
 
           <tbody>
-            {wishlist.map((item: ProductType): ReactElement => {
-              return (
-                <WishlistModalItem product={item} key={item.id} />                
-              )
-            })}
+            {wishlist.length ? (
+              wishlist.map((item: CartItemType): ReactElement => {
+                return <WishlistModalItem product={item} key={item.id} />;
+              })
+            ) : (
+              <tr>
+                <td colSpan={4}>No Products on your wishlist</td>
+              </tr>
+            )}
+
           </tbody>
         </table>
 
