@@ -8,7 +8,7 @@ import HeroItem from "./HeroItem";
 import { ReactElement } from "react";
 import Image from "./rendering-smart-home-device.jpg"
 import Image2 from "./rendering-smart-home-device (1).jpg"
-import Casio from "./casio.jpg"
+// import Casio from "./casio.jpg"
 
 
 type SettingTypes = {
