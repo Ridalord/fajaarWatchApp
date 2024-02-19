@@ -1,7 +1,10 @@
 import Cat1 from "./fz-7-cat-1.jpg"
 import Cat2 from "./fz-7-cat-2.jpg"
 
+
 export default function Category() {
+  
+
   return (
     <section className="fz-7-categories pt-120 fz-7-body" data-aos="fade-up">
       <div className="container">
