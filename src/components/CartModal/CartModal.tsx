@@ -15,8 +15,8 @@ export default function CartModal({showCart, setShowCart}: PropTypes) {
     setShowCart(prev => !prev)
   }
   return (
-    <div className={` ${showCart ? 'open': null}`}>
-      <div className={`cart-area cart-area-modal ${showCart? 'open': null}`} id="cart-area-modal">
+    <div className={`overlay ${showCart ? 'open': null}`}>
+      <div className={`cart-area cart-area-modal fz-7-body ${showCart? 'open': null}`} id="cart-area-modal">
         <div className="cart__header">
           <h3 className="cart__title">Shopping cart</h3>
           <button className="cart-area-modal-close-btn" onClick={handleCloseCart}><X/></button>
@@ -41,7 +41,7 @@ export default function CartModal({showCart, setShowCart}: PropTypes) {
                 })
               ) : (
                 <tr>
-                  <td colSpan={4}>No Products on your cart</td>
+                  <td colSpan={5}>No Products in your cart</td>
                 </tr>
               )}
             </tbody>

@@ -38,7 +38,7 @@ function App() {
     <Router>
       <div className="App">
         <Preloader load={load} />
-        <Header setShowNavMobile={setShowNavMobile} setShowSearchBar={setShowSearchBar} setShowWishlist={setShowWishlist} />
+        <Header setShowNavMobile={setShowNavMobile} setShowSearchBar={setShowSearchBar} setShowWishlist={setShowWishlist} setShowCart={setShowCart} />
         {isMobile ? <MobileNavWrapper showNavMobile={showNavMobile} setShowNavMobile={setShowNavMobile} /> : null}
         <div className="main">
           <Routes>

@@ -10,10 +10,11 @@ import useWishlist from '../hooks/useWishlist';
 type PropTypes = {
   setShowNavMobile: React.Dispatch<React.SetStateAction<boolean>>,
   setShowSearchBar: React.Dispatch<React.SetStateAction<boolean>>
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>
   setShowWishlist: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function Header({ setShowNavMobile, setShowSearchBar, setShowWishlist }: PropTypes) {
+export default function Header({ setShowNavMobile, setShowSearchBar, setShowWishlist, setShowCart }: PropTypes) {
   const { totalCartItems } = useCart()
   const { totalWishlistItem } = useWishlist()
 
@@ -24,6 +25,10 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
 
   const handleClickSearch = () => {
     setShowSearchBar(prev => !prev)
+  }
+
+  const handleClickCart = () => {
+    setShowCart(prev => !prev)
   }
 
   const handleWishlistClick = () => {
@@ -134,7 +139,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
                     </a>
                   </li>
                   <li>
-                    <a role="button" className="fz-header-cart-btn d-none d-lg-block">
+                    <a role="button" className="fz-header-cart-btn d-none d-lg-block" onClick={handleClickCart}>
                       <Bag/>
                       <span className="count">{totalCartItems}</span>
                     </a>
