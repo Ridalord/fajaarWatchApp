@@ -1,7 +1,7 @@
 import { ReactElement, useMemo, useReducer, createContext } from "react";
-import { ProductType } from "./ProductsProvider";
+import { CartItemType } from "./CartProvider";
 
-type WishlistStateType = { wishlist: ProductType[] }
+type WishlistStateType = { wishlist: CartItemType[] }
 
 const initWishlistState: WishlistStateType = { wishlist: [] }
 
@@ -14,7 +14,7 @@ export type ReducerActionType = typeof REDUCER_ACTION_TYPE
 
 export type ReducerAction = {
   type: string,
-  payload?: ProductType,
+  payload?: CartItemType,
 }
 
 const reducer = (state: WishlistStateType, action: ReducerAction): WishlistStateType => {
@@ -24,11 +24,11 @@ const reducer = (state: WishlistStateType, action: ReducerAction): WishlistState
         throw new Error('action.payload missing in ADD action')
       }
 
-      const { name, price, id, category, description, rating, reviews } = action.payload
+      const { name, price, id, category, description, rating, reviews, quantity } = action.payload
 
-      const filteredWishlist: ProductType[] = state.wishlist.filter(item => item.id != id)
+      const filteredWishlist: CartItemType[] = state.wishlist.filter(item => item.id != id)
       
-      return { ...state, wishlist: [...filteredWishlist, { name, price, id, category, description, rating, reviews }] }
+      return { ...state, wishlist: [...filteredWishlist, { name, price, id, category, description, rating, reviews, quantity }] }
 
     }
     case REDUCER_ACTION_TYPE.REMOVE: {
@@ -38,7 +38,7 @@ const reducer = (state: WishlistStateType, action: ReducerAction): WishlistState
 
       const { id } = action.payload
 
-      const filteredWishlist: ProductType[] = state.wishlist.filter(item => item.id != id)
+      const filteredWishlist: CartItemType[] = state.wishlist.filter(item => item.id != id)
 
       return { ...state, wishlist: [...filteredWishlist] }
 
