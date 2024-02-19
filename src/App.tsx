@@ -6,6 +6,7 @@ import MobileNavWrapper from "./components/Header/MobileNavWrapper";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import SearchBarModal from "./components/SearchBarModal/SearchBarModal";
+import WishlistModal from "./components/WishlistModal/WishlistModal";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   const [isMobile, setIsMobile] = useState(false);
   const [showNavMobile, setShowNavMobile] = useState(false)
   const [showSearchBar, setShowSearchBar] = useState(false)
+  const [showWishlist, setShowWishlist] = useState(false)
 
   useEffect(() => {
     const checkWindowWidth = () => {
@@ -42,7 +44,8 @@ function App() {
           </Routes>
         </div>
         <Footer />
-        {showSearchBar ? <SearchBarModal setShowSearchBar={setShowSearchBar} showSearchBar={showSearchBar} />: null}
+        {showSearchBar ? <SearchBarModal setShowSearchBar={setShowSearchBar} showSearchBar={showSearchBar} /> : null}
+        {showWishlist ? <WishlistModal setShowWishlist={setShowWishlist} showWishlist={showWishlist} /> : null}
       </div>
     </Router>
   )

@@ -1,6 +1,8 @@
 import { CartItemType } from "../context/CartProvider"
 import useCart from "../hooks/useCart"
 import useWishlist from "../hooks/useWishlist"
+import { X } from "react-bootstrap-icons";
+import Ticwatch from "./ticwatch.jpeg"
 
 type PropTypes = {
   product: CartItemType,
@@ -17,7 +19,7 @@ export default function WishlistModalItem({ product }: PropTypes) {
       <td>
         <div className="cart-product">
           <div className="cart-product__img">
-            <img src="assets/images/fz-3-pro-1.png" alt="Product Image" />
+            <img src={Ticwatch} alt={product.name} />
           </div>
           <div className="cart-product__txt">
             <h6><a href="shop-details.html">{product.name}</a></h6>
@@ -32,7 +34,7 @@ export default function WishlistModalItem({ product }: PropTypes) {
       </td>
       <td>
         <button className="item-remove-btn" onClick={removeFromWishlist}>
-          <i className="fa-light fa-xmark"></i>
+          <X/>
         </button>
       </td>
     </tr>
