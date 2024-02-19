@@ -8,6 +8,7 @@ import HeroItem from "./HeroItem";
 import { ReactElement } from "react";
 import Image from "./rendering-smart-home-device.jpg"
 import Image2 from "./rendering-smart-home-device (1).jpg"
+import Casio from "./casio.jpg"
 
 
 type SettingTypes = {
@@ -32,19 +33,24 @@ type HeroDataType = SliderDetailsType[]
 const HeroData: HeroDataType = [
   {
     id: 1,
-    title: "Smart Watch",
+    title: "Digital Smart Watch",
     image: Fz7Banner
   },
   {
     id: 2,
-    title: "Smart Watch",
+    title: "Digital Smart Watch",
     image: Image
   },
   {
     id: 2,
-    title: "Smart Watch",
+    title: "Digital Smart Watch",
     image: Image2
   },
+  // {
+  //   id: 3,
+  //   title: "Casio G-Shock GBD-H1000",
+  //   image: Casio
+  // },
 ]
 
 export default function Hero() {
