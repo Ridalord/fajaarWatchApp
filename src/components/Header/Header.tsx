@@ -14,7 +14,7 @@ type PropTypes = {
 
 export default function Header({ setShowNavMobile, setShowSearchBar }: PropTypes) {
   const { totalCartItems } = useCart()
-  const { totalWishlistItems } = useWishlist()
+  const { totalWishlistItem } = useWishlist()
 
 
   const handleMenuClick = () => {
@@ -125,13 +125,13 @@ export default function Header({ setShowNavMobile, setShowSearchBar }: PropTypes
                   <li>
                     <a role="button" className="fz-header-wishlist-btn fz-header-cart-btn d-none d-lg-block">
                       <FontAwesomeIcon icon={faHeart} />
-                      <span className="count">0</span>
+                      <span className="count">{totalWishlistItem}</span>
                     </a>
                   </li>
                   <li>
                     <a role="button" className="fz-header-cart-btn d-none d-lg-block">
                       <Bag/>
-                      <span className="count">0</span>
+                      <span className="count">{totalCartItems}</span>
                     </a>
                   </li>
                   <li className="d-block d-lg-none"><a role="button" className="fz-hamburger" onClick={handleMenuClick}><List/></a></li>
