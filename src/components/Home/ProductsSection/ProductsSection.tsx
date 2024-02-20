@@ -1,0 +1,111 @@
+import { useState } from "react";
+import useProducts from "../../hooks/useProducts";
+import useCart from "../../hooks/useCart";
+import useWishlist from "../../hooks/useWishlist";
+import { faHeart, faEye } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+
+export default function ProductsSection() {
+  const { products } = useProducts()
+  const { dispatch, REDUCER_ACTIONS } = useCart()
+  const { dispatch: wishlistDispatch, REDUCER_ACTIONS: WISHLIST_REDUCER_ACTION } = useWishlist()
+  const [activeTab, setActiveTab] = useState<string>('newest');
+  const filteredProducts = () => {
+    switch (activeTab) {
+      case 'newest':
+        return products.slice(-8); // Show all products
+      case 'best-seller':
+        return products.filter(product => (product.price <= 300)).slice(0, 8);
+      case 'on-sale':
+        return products.filter(product => product.category === "Smart Watches").slice(0, 8);
+      default:
+        return products;
+    }
+  }
+
+  return (
+    <section className="fz-7-new-arrivals py-120 fz-7-body" data-aos="fade-up">
+      <div className="container">
+        <div className="fz-7-section-heading">
+          <h2 className="fz-7-section-title">New Arrivals</h2>
+          <p className="fz-7-section-descr">Explore our latest collection of trendy and innovative products.</p>
+        </div>
+        {/* Tab navigation */}
+        <nav>
+          <div className="nav nav-tabs" id="fz-7-new-arrival-nav-tab" role="tablist">
+            <button
+              className={`nav-link ${activeTab === 'newest' ? 'active' : ''}`}
+              onClick={() => setActiveTab('newest')}
+            >
+              Newest
+            </button>
+            <button
+              className={`nav-link ${activeTab === 'best-seller' ? 'active' : ''}`}
+              onClick={() => setActiveTab('best-seller')}
+            >
+              Best Seller
+            </button>
+            <button
+              className={`nav-link ${activeTab === 'on-sale' ? 'active' : ''}`}
+              onClick={() => setActiveTab('on-sale')}
+            >
+              On Sale
+            </button>
+          </div>
+        </nav>
+
+        {/* Tab content */}
+        <div className="tab-content" id="fz-7-new-arrival-nav-tabContent">
+          {['newest', 'best-seller', 'on-sale'].map(tabId => (
+            <div
+              key={tabId}
+              className={`tab-pane fade ${activeTab === tabId ? 'show active' : ''}`}
+              id={`nav-${tabId}`}
+              role="tabpanel"
+              aria-labelledby={`nav-${tabId}-tab`}
+            >
+              <div className="row fz-6-products-row">
+                {filteredProducts().map(product => (
+                  <div key={product.id} className="col-lg-3 col-md-4 col-6 col-xxs-12">
+                    <div className="fz-7-product">
+                      <div className="fz-7-product-img">
+                        <img src={"#"} alt={product.name} />
+                      </div>
+                      <div className="fz-7-product-txt">
+                        <h6 className="fz-7-product-cat">{product.category}</h6>
+                        <h4 className="fz-7-product-title">
+                          <a href="shop-details.html">{product.name}</a>
+                        </h4>
+                        <span className="fz-7-product-price">${product.price.toFixed(2)}</span>
+                        <div className="fz-7-product-actions">
+                          <button type="button" className="add-to-cart-btn" onClick={() => dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, quantity: 1 } })}>Add To Cart</button>
+                          <div className="right">
+                            <button type="button" className="add-to-wishlist-btn" onClick={() => wishlistDispatch({ type: WISHLIST_REDUCER_ACTION.ADD, payload: {...product, quantity: 1}})}>
+                              {/* <i className="fa-light fa-heart"></i> */}
+                              <FontAwesomeIcon icon={faHeart}/>
+                            </button>
+                            <button type="button" className="fz-quick-view">
+                              {/* <i className="fa-light fa-eye"></i> */}
+                              <FontAwesomeIcon icon={faEye} />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* More Products Button */}
+        <div className="text-center">
+          <a href="shop.html" className="fz-6-sub-banner-btn fz-7-products-btn mt-30">More Products</a>
+        </div>
+      </div>
+    </section>
+  );
+}
