@@ -1,4 +1,4 @@
-import { ReactElement, useMemo, useReducer, createContext } from "react"
+import { ReactElement, useMemo, useReducer, createContext, useEffect } from "react"
 import { ReviewType } from "./ProductsProvider"
 
 export type CartItemType = {
@@ -14,13 +14,14 @@ export type CartItemType = {
 
 type CartStateType = { cart: CartItemType[] }
 
-const initCartState: CartStateType = { cart: [] }
+const initCartState: CartStateType = { cart: JSON.parse(localStorage.getItem('cart')!) || [] }
 
 const REDUCER_ACTON_TYPE = {
   ADD: "ADD",
   REMOVE: "REMOVE",
   QUANTITY: "QUANTITY",
-  SUBMIT: "SUBMIT"
+  SUBMIT: "SUBMIT",
+  LOAD_CART: "LOAD_CART"
 }
 
 export type ReducerActionType = typeof REDUCER_ACTON_TYPE
@@ -29,6 +30,8 @@ export type ReducerAction = {
   type: string,
   payload?: CartItemType,
 }
+
+
 
 const reducer = (state: CartStateType, action: ReducerAction): CartStateType => {
   switch (action.type) {
@@ -54,7 +57,7 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
       const { id } = action.payload
 
       const filteredCart: CartItemType[] = state.cart.filter(item => item.id != id)
-
+      
       return { ...state, cart: [...filteredCart] }
     }
     case REDUCER_ACTON_TYPE.QUANTITY: {
@@ -77,16 +80,31 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
       return { ...state, cart: [...filteredCart, updatedItem] }
     }
     case REDUCER_ACTON_TYPE.SUBMIT: {
+      // localStorage.setItem('cart', JSON.stringify([]));
       return { ...state, cart: [] }
+    }
+    case REDUCER_ACTON_TYPE.LOAD_CART: {
+      if (!action.payload) {
+        throw new Error('action.payload missing in LOAD_CART action');
+      }
+      const cart: CartItemType[] = JSON.parse(localStorage.getItem('cart')!) || [];
+      return { ...state, ...cart };
     }
     default:
       throw new Error('Undefined reducer action type')
+    
   }
 }
 
 
 const useCartContext = (initCartState: CartStateType) => {
   const [state, dispatch] = useReducer(reducer, initCartState)
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+      dispatch({ type: REDUCER_ACTON_TYPE.LOAD_CART, payload: JSON.parse(storedCart) });
+    }
+  }, []);
 
   const REDUCER_ACTIONS = useMemo(() => {
     return REDUCER_ACTON_TYPE

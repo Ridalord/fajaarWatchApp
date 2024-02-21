@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useProducts from "../../hooks/useProducts";
 import useCart from "../../hooks/useCart";
 import useWishlist from "../../hooks/useWishlist";
@@ -9,9 +9,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function ProductsSection() {
   const { products } = useProducts()
-  const { dispatch, REDUCER_ACTIONS } = useCart()
-  const { dispatch: wishlistDispatch, REDUCER_ACTIONS: WISHLIST_REDUCER_ACTION } = useWishlist()
+  const { dispatch, REDUCER_ACTIONS, cart } = useCart()
+  const { dispatch: wishlistDispatch, REDUCER_ACTIONS: WISHLIST_REDUCER_ACTION, wishlist } = useWishlist()
   const [activeTab, setActiveTab] = useState<string>('newest');
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  }, [cart, wishlist]);
   const filteredProducts = () => {
     switch (activeTab) {
       case 'newest':

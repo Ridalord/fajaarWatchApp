@@ -3,7 +3,7 @@ import { CartItemType } from "./CartProvider";
 
 type WishlistStateType = { wishlist: CartItemType[] }
 
-const initWishlistState: WishlistStateType = { wishlist: [] }
+const initWishlistState: WishlistStateType = { wishlist: JSON.parse(localStorage.getItem('wishlist')!) || [] }
 
 const REDUCER_ACTION_TYPE = {
   ADD: "ADD",
