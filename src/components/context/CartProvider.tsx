@@ -99,6 +99,11 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
 
 const useCartContext = (initCartState: CartStateType) => {
   const [state, dispatch] = useReducer(reducer, initCartState)
+  const sortedCart = useMemo(() => {
+    // Sorting the cart by item names alphabetically
+    const sorted = [...state.cart].sort((a, b) => a.name.localeCompare(b.name));
+    return sorted;
+  }, [state.cart]);
   useEffect(() => {
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
@@ -120,7 +125,9 @@ const useCartContext = (initCartState: CartStateType) => {
     }, 0)
   )
 
-  const cart = state.cart
+  
+
+  const cart = sortedCart
 
   return { dispatch, REDUCER_ACTIONS, totalCartItems, totalPrice, cart }
 }
