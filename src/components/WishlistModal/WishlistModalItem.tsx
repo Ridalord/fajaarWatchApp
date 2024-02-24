@@ -11,7 +11,10 @@ type PropTypes = {
 export default function WishlistModalItem({ product }: PropTypes) {
   const { dispatch, REDUCER_ACTIONS } = useCart()
   const {dispatch : wishlistDispatch, REDUCER_ACTIONS: WISHLIST_REDUCER_ACTION} = useWishlist()
-  const onAddToCart = () => dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product } })
+  const onAddToCart = () => {
+    dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product } })
+    wishlistDispatch({ type: WISHLIST_REDUCER_ACTION.REMOVE, payload: { ...product } })
+  }
   const removeFromWishlist = () => wishlistDispatch({ type: WISHLIST_REDUCER_ACTION.REMOVE, payload: {...product} })
 
   return (
