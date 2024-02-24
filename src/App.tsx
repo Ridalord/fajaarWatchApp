@@ -60,20 +60,20 @@ function App() {
     setLoad(true)
   })
   return (
-    <Router>
+    <Router basename="fajaarWatchApp">
       <div className="App">
         <Preloader load={load} />
         <Header setShowNavMobile={setShowNavMobile} setShowSearchBar={setShowSearchBar} setShowWishlist={setShowWishlist} setShowCart={setShowCart} />
         {isMobile ? <MobileNavWrapper showNavMobile={showNavMobile} setShowNavMobile={setShowNavMobile} /> : null}
         <div className="main">
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </div>
         <Footer />
         {showSearchBar ? <SearchBarModal setShowSearchBar={setShowSearchBar} showSearchBar={showSearchBar} /> : null}
         {showWishlist ? <WishlistModal setShowWishlist={setShowWishlist} showWishlist={showWishlist} /> : null}
-        {showCart ? <CartModal showCart={showCart} setShowCart={setShowCart} />: null}
+        {showCart ? <CartModal showCart={showCart} setShowCart={setShowCart} /> : null}
       </div>
     </Router>
   )
