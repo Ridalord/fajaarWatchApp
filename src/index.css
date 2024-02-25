@@ -11078,6 +11078,7 @@ a.fz-hamburger {
 
 .fz-7-product-img {
   overflow: hidden;
+  height: 300px
 }
 
 .fz-7-product-img img {
