@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelopeOpen, faHeart, faUser } from '@fortawesome/free-regular-svg-icons';
-import {  Bag, Search, List } from "react-bootstrap-icons";
+import { Bag, Search, List } from "react-bootstrap-icons";
 import { faFacebookF, faTwitter, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import Logo7dark from "./logo-7-dark.png"
 import classes from "./Header.module.css"
 import useCart from '../hooks/useCart';
 import useWishlist from '../hooks/useWishlist';
+import { useEffect, useState } from 'react';
 
 type PropTypes = {
   setShowNavMobile: React.Dispatch<React.SetStateAction<boolean>>,
@@ -17,7 +18,25 @@ type PropTypes = {
 export default function Header({ setShowNavMobile, setShowSearchBar, setShowWishlist, setShowCart }: PropTypes) {
   const { totalCartItems } = useCart()
   const { totalWishlistItem } = useWishlist()
+  const [fixed, setFixed] = useState(false)
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setFixed(true);
+        document.body.style.paddingTop = `${document.querySelector('.to-be-fixed')?.getBoundingClientRect().height}px`;
+      } else {
+        setFixed(false);
+        document.body.style.paddingTop = '0';
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleMenuClick = () => {
     setShowNavMobile(prev => !prev)
@@ -80,7 +99,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
         </div>
       </div>
 
-      <div className="fz-7-bottom-header to-be-fixed">
+      <div className={`fz-7-bottom-header to-be-fixed ${fixed ? 'fixed' : null}`}>
         <div className="container">
           <div className="row g-0 align-items-center">
             <div className="col-5 header-nav-container d-lg-block d-none">
@@ -114,7 +133,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
             <div className="col-lg-2 col-md-6 col-9">
               <div className="fz-logo-container text-lg-center text-start ms-0 ms-lg-auto">
                 <a href="index.html">
-                  <img src={Logo7dark} alt="logo" className="fz-logo"/>
+                  <img src={Logo7dark} alt="logo" className="fz-logo" />
                 </a>
               </div>
             </div>
@@ -124,7 +143,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
                 <ul className="fz-header-right-actions d-flex align-items-center justify-content-end">
                   <li>
                     <a role="button" className="fz-header-search-btn fz-2-search-btn d-none d-lg-block" onClick={handleClickSearch}>
-                      <Search/>
+                      <Search />
                     </a>
                   </li>
                   <li>
@@ -140,11 +159,11 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
                   </li>
                   <li>
                     <a role="button" className="fz-header-cart-btn d-none d-lg-block" onClick={handleClickCart}>
-                      <Bag/>
+                      <Bag />
                       <span className="count">{totalCartItems}</span>
                     </a>
                   </li>
-                  <li className="d-block d-lg-none"><a role="button" className="fz-hamburger" onClick={handleMenuClick}><List/></a></li>
+                  <li className="d-block d-lg-none"><a role="button" className="fz-hamburger" onClick={handleMenuClick}><List /></a></li>
                 </ul>
               </div>
             </div>
