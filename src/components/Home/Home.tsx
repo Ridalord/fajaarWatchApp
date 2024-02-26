@@ -1,3 +1,4 @@
+import AmazingBanner from "./AmazingBanner/AmazingBanner";
 import Category from "./Category/Category";
 import Hero from "./Hero/Hero";
 import ProductsSection from "./ProductsSection/ProductsSection";
@@ -7,7 +8,8 @@ export default function Home() {
     <>
       <Hero />
       <Category />
-      <ProductsSection/>
+      <ProductsSection />
+      <AmazingBanner/>
     </>
   )
 }
