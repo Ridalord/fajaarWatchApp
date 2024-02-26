@@ -73,7 +73,7 @@ export default function ProductsSection() {
             >
               <div className="row fz-6-products-row">
                 {filteredProducts().map(product => (
-                  <ProductItem product={product} key={product.id}/>
+                  <ProductItem product={product} key={product.id} type="null"/>
                 ))}
               </div>
             </div>

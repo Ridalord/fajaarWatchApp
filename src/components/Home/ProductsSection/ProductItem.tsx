@@ -9,12 +9,13 @@ import { getDownloadURL, getStorage, list, ref } from "@firebase/storage";
 
 
 type PropTypes = {
-  product: ProductType
+  product: ProductType,
+  type: string,
 }
 interface ImageUrls {
   [productId: string]: string[]; // Define an index signature for image URLs
 }
-export default function ProductItem({ product }: PropTypes) {
+export default function ProductItem({ product, type }: PropTypes) {
   const { products } = useProducts()
   const { dispatch, REDUCER_ACTIONS} = useCart()
   const { dispatch: wishlistDispatch, REDUCER_ACTIONS: WISHLIST_REDUCER_ACTION } = useWishlist()
@@ -50,7 +51,7 @@ export default function ProductItem({ product }: PropTypes) {
   }, [products]);
 
   return (
-    <div className="col-lg-3 col-md-4 col-6 col-xxs-12">
+    <div className={type==="slider"? 'col-11':`col-lg-3 col-md-4 col-6 col-xxs-12`}>
       <div className="fz-7-product">
         <div className="fz-7-product-img">
           <img src={imageUrls[product.id]?.[0] || "#"} alt={product.name} />
