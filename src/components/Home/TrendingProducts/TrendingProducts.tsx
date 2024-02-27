@@ -2,6 +2,10 @@ import Slider from "react-slick";
 import useProducts from "../../hooks/useProducts";
 import ProductItem from "../ProductsSection/ProductItem";
 import { ProductType } from "../../context/ProductsProvider";
+import classes from "./TrendingProducts.module.css"
+import { ReactElement } from "react";
+import { ArrowRight, ArrowLeft } from "react-bootstrap-icons";
+
 
 
 type ResponseObj = {
@@ -19,11 +23,35 @@ type SettingTypes = {
   autoplay: boolean,
   autoplaySpeed: number,
   arrows: boolean,
+  nextArrow: ReactElement,
+  prevArrow: ReactElement,
   responsive: ResponseObj[]
 }
 
+type CustomButtonPropsType = {
+  onClick?: () => void,
+} 
+
 export default function TrendingProducts() {
   const { products } = useProducts()
+  const CustomNextArrow = ({ onClick }: CustomButtonPropsType) => (
+    <button
+      className={`${classes.slickNext}`}
+      onClick={onClick}
+    >
+      <ArrowRight/>
+    </button>
+  );
+
+  const CustomPrevArrow = ({ onClick }: CustomButtonPropsType) => (
+    <button
+      className={`${classes.slickPrev}`}
+      onClick={onClick}
+    >
+      <ArrowLeft/>
+    </button>
+  );
+
   const settings: SettingTypes = {
     dots: false,
     infinite: true,
@@ -33,6 +61,8 @@ export default function TrendingProducts() {
     autoplay: true,
     autoplaySpeed: 2000,
     arrows: true,
+    nextArrow: <CustomNextArrow /> ,
+    prevArrow: <CustomPrevArrow /> ,
     responsive: [
       {
         breakpoint: 768, 
