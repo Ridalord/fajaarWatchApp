@@ -1,10 +1,9 @@
-import React from "react";
 import DealImage from "../../../assets/images/fz-7-flash-img.png";
 
-const Deal = () => {
-  return (
+export default function Deal() {
+    return (
     <div className="container">
-      <div className="fz-7-flash-bg">
+      <div className="fz-7-body fz-7-flash-bg">
         <div className="row gy-4 align-items-center g-0">
           <div className="col-lg-6">
             <div className="fz-7-flash-txt">
@@ -25,7 +24,7 @@ const Deal = () => {
                 </div>
                 <div className="syotimer__footer"></div>
               </div>
-              <a href="shop.html" className="fz-6-sub-banner-btn">
+              <a href="#" className="fz-6-sub-banner-btn">
                 Shop Now
               </a>
             </div>
@@ -41,6 +40,4 @@ const Deal = () => {
       </div>
     </div>
   );
-};
-
-export default Deal;
+}
