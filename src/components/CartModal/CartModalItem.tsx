@@ -22,10 +22,12 @@ export default function CartModalItem({product}:PropTypes) {
     })
   }
   const onSubtractQuantity = () => {
-    dispatch({
-      type: REDUCER_ACTIONS.QUANTITY,
-      payload: { ...product, quantity: product.quantity - 1 }
-    })
+    if (product.quantity > 1) {
+      dispatch({
+        type: REDUCER_ACTIONS.QUANTITY,
+        payload: { ...product, quantity: product.quantity - 1 }
+      }) 
+    }
   }
 
   const onRemoveProduct = () => {
