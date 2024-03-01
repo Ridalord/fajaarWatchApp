@@ -1,9 +1,10 @@
 import DealImage from "../../../assets/images/fz-7-flash-img.png";
+import BackgroundImg from "./fz-7-flash-bg.png"
 
 export default function Deal() {
     return (
     <div className="container">
-      <div className="fz-7-body fz-7-flash-bg">
+      <div className="fz-7-body fz-7-flash-bg" style={{backgroundImage: `url(${BackgroundImg})`}}>
         <div className="row gy-4 align-items-center g-0">
           <div className="col-lg-6">
             <div className="fz-7-flash-txt">
