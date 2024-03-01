@@ -29,8 +29,8 @@ export const BlogPostsProvider = ({ children }: ChildrenType): ReactElement => {
   useEffect(() => {
     const fetchBlogPosts = async (): Promise<void> => {
       try {
-        const productsRef = collection(db, "BlogPosts");
-        const snapshot = await getDocs(productsRef);
+        const blogsRef = collection(db, "BlogPosts");
+        const snapshot = await getDocs(blogsRef);
         const fetchedBlogPosts: BlogType[] = snapshot.docs.map((doc) => {
           const blogData = doc.data();
           return {
@@ -58,4 +58,6 @@ export const BlogPostsProvider = ({ children }: ChildrenType): ReactElement => {
   );
 }
 
+
+export default BlogPostsContext
 
