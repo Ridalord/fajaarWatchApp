@@ -10,6 +10,7 @@ import WishlistModal from "./components/WishlistModal/WishlistModal";
 import CartModal from "./components/CartModal/CartModal";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Shop from "./components/Shop/Shop";
 
 function App() {
   const [load, setLoad] = useState(false);
@@ -82,6 +83,7 @@ function App() {
         <div className="main">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/shop" element={<Shop />} />
           </Routes>
         </div>
         <Footer />
