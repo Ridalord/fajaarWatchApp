@@ -1,7 +1,9 @@
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+
 export default function Shop() {
   return (
-    <div>
-      Shop Page
-    </div>
+    <>
+      <Breadcrumbs page="shop"/>
+    </>
   )
 }

@@ -5,12 +5,12 @@ import Header from "./components/Header/Header";
 import MobileNavWrapper from "./components/Header/MobileNavWrapper";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
+import Shop from "./components/Shop/Shop";
 import SearchBarModal from "./components/SearchBarModal/SearchBarModal";
 import WishlistModal from "./components/WishlistModal/WishlistModal";
 import CartModal from "./components/CartModal/CartModal";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Shop from "./components/Shop/Shop";
 
 function App() {
   const [load, setLoad] = useState(false);
@@ -60,48 +60,56 @@ function App() {
     };
   }, []);
 
-  window.addEventListener("load", () => {
-    setLoad(true);
-  });
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoad(true);
+    }, 3000); // Set a timeout to simulate loading delay. Replace with actual loading logic.
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <Router basename="fajaarWatchApp">
       <div className="App fz-7-body">
-        <Preloader load={load} />
-        <Header
-          setShowNavMobile={setShowNavMobile}
-          setShowSearchBar={setShowSearchBar}
-          setShowWishlist={setShowWishlist}
-          setShowCart={setShowCart}
-        />
-        {isMobile ? (
-          <MobileNavWrapper
-            showNavMobile={showNavMobile}
-            setShowNavMobile={setShowNavMobile}
-          />
-        ) : null}
-        <div className="main">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
-          </Routes>
-        </div>
-        <Footer />
-        {showSearchBar ? (
-          <SearchBarModal
-            setShowSearchBar={setShowSearchBar}
-            showSearchBar={showSearchBar}
-          />
-        ) : null}
-        {showWishlist ? (
-          <WishlistModal
-            setShowWishlist={setShowWishlist}
-            showWishlist={showWishlist}
-          />
-        ) : null}
-        {showCart ? (
-          <CartModal showCart={showCart} setShowCart={setShowCart} />
-        ) : null}
+        {!load && <Preloader />}
+        {load && (
+          <>
+            <Header
+              setShowNavMobile={setShowNavMobile}
+              setShowSearchBar={setShowSearchBar}
+              setShowWishlist={setShowWishlist}
+              setShowCart={setShowCart}
+            />
+            {isMobile && (
+              <MobileNavWrapper
+                showNavMobile={showNavMobile}
+                setShowNavMobile={setShowNavMobile}
+              />
+            )}
+            <div className="main">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/shop" element={<Shop />} />
+              </Routes>
+            </div>
+            <Footer />
+            {showSearchBar && (
+              <SearchBarModal
+                setShowSearchBar={setShowSearchBar}
+                showSearchBar={showSearchBar}
+              />
+            )}
+            {showWishlist && (
+              <WishlistModal
+                setShowWishlist={setShowWishlist}
+                showWishlist={showWishlist}
+              />
+            )}
+            {showCart && (
+              <CartModal showCart={showCart} setShowCart={setShowCart} />
+            )}
+          </>
+        )}
       </div>
     </Router>
   );
