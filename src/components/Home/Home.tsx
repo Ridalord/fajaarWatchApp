@@ -4,7 +4,8 @@ import Hero from "./Hero/Hero";
 import ProductsSection from "./ProductsSection/ProductsSection";
 import TrendingProducts from "./TrendingProducts/TrendingProducts";
 import Deal from "./DealOfTheDay/Deal";
-// import BlogPosts from "./BlogPostSection/BlogPosts";
+import Brands from "./Brands/Brands";
+import EmailSignup from "./EmailSignup/EmailSignup";
 
 export default function Home() {
   return (
@@ -16,6 +17,8 @@ export default function Home() {
       <TrendingProducts />
       <Deal />
       {/* <BlogPosts /> */}
+      <Brands />
+      <EmailSignup/>
     </>
   );
 }

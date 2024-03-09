@@ -7,6 +7,7 @@ import classes from "./Header.module.css"
 import useCart from '../hooks/useCart';
 import useWishlist from '../hooks/useWishlist';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 type PropTypes = {
   setShowNavMobile: React.Dispatch<React.SetStateAction<boolean>>,
@@ -106,10 +107,10 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
               <nav className="fz-header-nav" id="fz_header_nav">
                 <ul className="align-items-center">
                   <li className="fz-dropdown fz-nav-item">
-                    <a role="button" className="fz-nav-link"><span>home</span></a>
+                    <Link to="/" className="fz-nav-link"><span>home</span></Link>
                   </li>
                   <li className="fz-dropdown fz-nav-item">
-                    <a role="button" className="fz-nav-link"><span>shop</span> </a>
+                    <Link to="/shop" className="fz-nav-link"><span>shop</span> </Link>
                   </li>
                   <li className="fz-dropdown fz-nav-item">
                     <a role="button" className="fz-nav-link"><span>pages</span> +</a>
