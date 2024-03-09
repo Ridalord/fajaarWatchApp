@@ -7,13 +7,16 @@ import './index.css'
 import { ProductsProvider } from './components/context/ProductsProvider.tsx';
 import { WishlistProvider } from './components/context/WishlistProvider.tsx';
 import { CartProvider } from './components/context/CartProvider.tsx';
+import { BlogPostsProvider } from './components/context/BlogProvider.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ProductsProvider>
       <WishlistProvider>
         <CartProvider>
-          <App />
+          <BlogPostsProvider>
+            <App />
+          </BlogPostsProvider>
         </CartProvider>
       </WishlistProvider>
     </ProductsProvider>

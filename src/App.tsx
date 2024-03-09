@@ -60,7 +60,7 @@ function App() {
   });
   return (
     <Router basename="fajaarWatchApp">
-      <div className="App">
+      <div className="App fz-7-body">
         <Preloader load={load} />
         <Header
           setShowNavMobile={setShowNavMobile}

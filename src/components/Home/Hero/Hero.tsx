@@ -8,6 +8,7 @@ import HeroItem from "./HeroItem";
 import { ReactElement } from "react";
 import Image from "./rendering-smart-home-device.jpg"
 import Image2 from "./rendering-smart-home-device (1).jpg"
+import useBlogs from "../../hooks/useBlog";
 // import Casio from "./casio.jpg"
 
 
@@ -54,6 +55,10 @@ const HeroData: HeroDataType = [
 ]
 
 export default function Hero() {
+  const { blogPosts } = useBlogs()
+  
+  console.log("Blogs ", blogPosts)
+
   const settings: SettingTypes = {
     dots: false,
     infinite: true,
@@ -70,8 +75,6 @@ export default function Hero() {
         {HeroData.map((item: SliderDetailsType): ReactElement => (
           <HeroItem image={item.image} title={item.title} key={item.id} />
         ))}
-
-        
       </Slider>
 
       <div className="container fz-7-banner-socials-container">
