@@ -86,8 +86,8 @@ export default function BlogPosts() {
           className="fz-7-trending-products-slider owl-carousel"
         >
           {" "}
-          {blogPosts.map((blogPosts: BlogType) => (
-            <BlogItem key={blogPosts.id} blogPosts={blogPosts} type="slider" />
+          {blogPosts.map((blogPost: BlogType) => (
+            <BlogItem key={blogPost.id} blogPost={blogPost} type="slider" />
           ))}
         </Slider>
       </div>
