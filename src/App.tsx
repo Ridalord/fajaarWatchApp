@@ -71,7 +71,7 @@ function App() {
   return (
     <Router basename="fajaarWatchApp">
       <div className="App fz-7-body">
-        {!load && <Preloader />}
+        {!load && <Preloader load={load} />}
         {load && (
           <>
             <Header
