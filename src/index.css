@@ -11084,6 +11084,12 @@ a.fz-hamburger {
 .fz-7-product-img img {
   transition: scale 0.4s ease;
   width: 100%;
+  
+}
+
+.bg-ImageColor img{
+  background-color: #2B2C34;
+  padding: 20px;
 }
 
 .fz-7-product-txt {

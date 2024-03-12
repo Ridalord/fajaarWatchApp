@@ -1,0 +1,20 @@
+.slickPrev,
+.slickNext {
+  position: absolute !important;
+  top: -80px !important;
+  right: 47px;
+  /* padding: 10px; */
+  cursor: pointer;
+  border: 1px solid #E8E9EB;
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  transition: 0.4s ease;
+  color: #191919;
+}
+
+.slickPrev {
+  right: 106px;
+}
+

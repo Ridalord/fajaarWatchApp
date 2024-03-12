@@ -1,5 +1,5 @@
 import DealImage from "../../../assets/images/fz-7-flash-img.png";
-import BackgroundImg from "./fz-7-flash-bg.png"
+// import BackgroundImg from "./fz-7-flash-bg.png"
 
 export default function Deal() {
   return (
