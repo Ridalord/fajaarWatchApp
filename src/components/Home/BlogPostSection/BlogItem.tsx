@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { BlogType } from "../../context/BlogProvider";
 import useBlogs from "../../hooks/useBlog";
-import { faEye } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faEye } from "@fortawesome/free-regular-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getDownloadURL, getStorage, list, ref } from "@firebase/storage";
 
 type PropTypes = {
@@ -48,64 +48,47 @@ export default function BlogItem({ blogPost, type }: PropTypes) {
   }, [blogPosts]);
 
   return (
-    // <div
-    //   className={
-    //     type === "slider" ? "col-11" : `col-lg-3 col-md-4 col-6 col-xxs-12`
-    //   }
-    // >
-
-    //     <div className="fz-7-blog">
-    //       <div className="fz-7-blog-img">
-    //         <img src="assets/images/fz-7-blog-3.jpg" alt="Blog Image" />
-    //       </div>
-
-    //       <span className="fz-7-blog-date">
-    //         <span>15</span>Jan
-    //       </span>
-    //       <div className="fz-7-blog-txt">
-    //         <h4 className="fz-7-blog-title">
-    //           <a href="blog-details.html">{blogPosts.title}</a>
-    //         </h4>
-    //         <a href="blog-details.html" className="fz-7-blog-btn">
-    //           Read More
-    //         </a>
-    //       </div>
-    //     </div>
-
-    // </div>
-
     <div
       className={
         type === "slider" ? "col-11" : `col-lg-3 col-md-4 col-6 col-xxs-12`
       }
     >
-      <div className="fz-7-product">
-        <div className="fz-7-product-img ">
-          <div className="fz-7-product-img">
+      <div className="position-relative">
+        <div className="fz-7-blogs-slider owl-carousel owl-loaded owl-drag">
+          <div className="owl-stage-outer">
+            <div className="owl-stage">
+            <div
+        className="owl-item active"
+        style={{ width: "460px", marginRight: "30px" }}
+      >
+        <div className="fz-7-blog">
+          <div className="fz-7-blog-img">
             <img
               src={imageUrls[blogPost.id]?.[0] || "#"}
               alt={blogPost.title}
             />
           </div>
-        </div>
-        <div className="fz-7-product-txt">
-          <h6 className="fz-7-product-cat">{blogPost.category}</h6>
-          <h4 className="fz-7-product-title">
-            <a href="shop-details.html">{blogPost.title}</a>
-          </h4>
-          {/* <span className="fz-7-product-price">{blogPosts.createdAt}</span> */}
-          <div className="fz-7-product-actions">
-            <div className="right">
-              <button type="button" className="fz-quick-view">
-                {/* <i className="fa-light fa-eye"></i> */}
-                <FontAwesomeIcon icon={faEye} />
-              </button>
-            </div>
+
+          <span className="fz-7-blog-date">
+            <span>15</span>Jan
+          </span>
+          <div className="fz-7-blog-txt">
+            <h4 className="fz-7-blog-title">
+              <a href="blog-details.html">{blogPost.title}</a>
+            </h4>
+            <a href="blog-details.html" className="fz-7-blog-btn">
+              Read More
+            </a>
           </div>
         </div>
       </div>
+
+            </div>
+          </div>{" "}
+        </div>{" "}
+      </div>
+
+   
     </div>
   );
 }
-
-
