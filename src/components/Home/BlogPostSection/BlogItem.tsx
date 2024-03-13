@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { BlogType } from "../../context/BlogProvider";
 import useBlogs from "../../hooks/useBlog";
-// import { faEye } from "@fortawesome/free-regular-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getDownloadURL, getStorage, list, ref } from "@firebase/storage";
-
+import { getDatePart } from "../../../util/getDataPart";
 type PropTypes = {
   blogPost: BlogType;
   type: string;
@@ -16,6 +14,7 @@ interface ImageUrls {
 
 export default function BlogItem({ blogPost, type }: PropTypes) {
   const { blogPosts } = useBlogs();
+  console.log(blogPost?.createdAt);
 
   const fetchProductImageUrls = (blogPostId: string) => {
     const storage = getStorage();
@@ -57,38 +56,36 @@ export default function BlogItem({ blogPost, type }: PropTypes) {
         <div className="fz-7-blogs-slider owl-carousel owl-loaded owl-drag">
           <div className="owl-stage-outer">
             <div className="owl-stage">
-            <div
-        className="owl-item active"
-        style={{ width: "460px", marginRight: "30px" }}
-      >
-        <div className="fz-7-blog">
-          <div className="fz-7-blog-img">
-            <img
-              src={imageUrls[blogPost.id]?.[0] || "#"}
-              alt={blogPost.title}
-            />
-          </div>
+              <div
+                className="owl-item active"
+                style={{ width: "460px", marginRight: "30px" }}
+              >
+                <div className="fz-7-blog">
+                  <div className="fz-7-blog-img">
+                    <img
+                      src={imageUrls[blogPost.id]?.[0] || "#"}
+                      alt={blogPost.title}
+                    />
+                  </div>
 
-          <span className="fz-7-blog-date">
-            <span>15</span>Jan
-          </span>
-          <div className="fz-7-blog-txt">
-            <h4 className="fz-7-blog-title">
-              <a href="blog-details.html">{blogPost.title}</a>
-            </h4>
-            <a href="blog-details.html" className="fz-7-blog-btn">
-              Read More
-            </a>
-          </div>
-        </div>
-      </div>
-
+                  <span className="fz-7-blog-date">
+                    <span>{getDatePart(blogPost.createdAt, "day")}</span>{" "}
+                    {getDatePart(blogPost.createdAt, "month")}
+                  </span>
+                  <div className="fz-7-blog-txt">
+                    <h4 className="fz-7-blog-title">
+                      <a href="blog-details.html">{blogPost.title}</a>
+                    </h4>
+                    <a href="blog-details.html" className="fz-7-blog-btn">
+                      Read More
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>{" "}
         </div>{" "}
       </div>
-
-   
     </div>
   );
 }
