@@ -48,12 +48,12 @@ export default function BlogItem({ blogPost, type }: PropTypes) {
   return (
     <div
       className={
-        type === "slider" ? "col-11" : `col-lg-3 col-md-4 col-6 col-xxs-12`
+        type === "slider" ? "col-11 " : `col-lg-3 col-md-4 col-6 col-xxs-12`
       }
     >
-      <div className="position-relative">
+      <div className="position-relative space">
         <div className="fz-7-blogs-slider owl-carousel owl-loaded owl-drag">
-          <div className="owl-stage-outer">
+          <div className="owl-stage-outer ">
             <div className="owl-stage">
               <div
                 className="owl-item active"

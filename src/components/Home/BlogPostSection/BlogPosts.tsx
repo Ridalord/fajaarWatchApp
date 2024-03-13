@@ -18,7 +18,7 @@ type SettingTypes = {
   speed: number;
   slidesToShow: number;
   slidesToScroll: number;
-  autoplay: boolean;
+  // autoplay: boolean;
   autoplaySpeed: number;
   arrows: boolean;
   nextArrow: ReactElement;
@@ -51,7 +51,7 @@ export default function BlogPosts() {
     speed: 1000,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 5000,
     arrows: true,
     nextArrow: <CustomNextArrow />,
@@ -85,7 +85,6 @@ export default function BlogPosts() {
           {...settings}
           className="fz-7-trending-products-slider owl-carousel"
         >
-          {" "}
           {blogPosts.map((blogPost: BlogType) => (
             <BlogItem key={blogPost.id} blogPost={blogPost} type="slider" />
           ))}
