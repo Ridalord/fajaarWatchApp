@@ -14,7 +14,6 @@ interface ImageUrls {
 
 export default function BlogItem({ blogPost, type }: PropTypes) {
   const { blogPosts } = useBlogs();
-  console.log(blogPost?.createdAt);
 
   const fetchProductImageUrls = (blogPostId: string) => {
     const storage = getStorage();
