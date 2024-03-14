@@ -6,6 +6,7 @@ import TrendingProducts from "./TrendingProducts/TrendingProducts";
 import Deal from "./DealOfTheDay/Deal";
 import Brands from "./Brands/Brands";
 import EmailSignup from "./EmailSignup/EmailSignup";
+import BlogPosts from "./BlogPostSection/BlogPosts";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <AmazingBanner />
       <TrendingProducts />
       <Deal />
+      <BlogPosts />
       <Brands />
       <EmailSignup/>
     </>
