@@ -60,9 +60,11 @@ function App() {
     };
   }, []);
 
-  window.addEventListener("load", () => {
-    setLoad(true);
-  });
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      setLoad(false); 
+    });
+  }, []);
 
   return (
     <Router basename="fajaarWatchApp">
