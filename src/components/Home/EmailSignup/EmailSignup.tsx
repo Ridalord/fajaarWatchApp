@@ -15,7 +15,7 @@ export default function EmailSignup() {
 
           <div className="col-xl-6 col-lg-7">
             <div className="fz-7-subs">
-              <h2 className="fz-7-section-title">Sign Up For Farzaa Emails</h2>
+              <h2 className="fz-7-section-title">Sign Up For Farjaa Emails</h2>
               <p className="fz-7-section-descr">It only takes a second to be the first to find out about our latest news and
                 promotions...</p>
               <form action="#" className="fz-6-subs-form fz-7-subs-form">
