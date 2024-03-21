@@ -11084,6 +11084,12 @@ a.fz-hamburger {
 .fz-7-product-img img {
   transition: scale 0.4s ease;
   width: 100%;
+  
+}
+
+.bg-ImageColor img{
+  background-color: #2B2C34;
+  padding: 20px;
 }
 
 .fz-7-product-txt {
@@ -11172,6 +11178,9 @@ a.fz-hamburger {
 .fz-7-trending-products-slider .owl-stage-outer {
   margin-bottom: -15px;
   padding-bottom: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+ 
 }
 
 .fz-7-trending-products .fz-6-products-heading {
