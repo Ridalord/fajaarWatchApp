@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import Preloader from "./components/Preloader/Preloader";
+import Preloader from "./components/Preloader/Preloader";
 import Header from "./components/Header/Header";
 import MobileNavWrapper from "./components/Header/MobileNavWrapper";
 import Footer from "./components/Footer/Footer";
@@ -13,7 +13,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 function App() {
-  // const [load] = useState(false);
+  const [load] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [showNavMobile, setShowNavMobile] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -60,14 +60,12 @@ function App() {
     };
   }, []);
 
-    // window.addEventListener("load", () => {
-    //   setLoad(false); 
-    // });
+  
 
   return (
     <Router basename="fajaarWatchApp">
       <div className="App fz-7-body">
-        {/* <Preloader load={load} /> */}
+        <Preloader load={load} />
         <Header
           setShowNavMobile={setShowNavMobile}
           setShowSearchBar={setShowSearchBar}
