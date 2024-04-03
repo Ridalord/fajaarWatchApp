@@ -1,4 +1,4 @@
-// import PriceFilter from "./PriceFilter";
+import PriceFilter from "./PriceFilter";
 import ProductCategory from "./ProductCategories";
 import ProductSearch from "./ProductSearch";
 
@@ -10,7 +10,7 @@ export default function Sidebar() {
 
         <ProductCategory/>
 
-        {/* <PriceFilter/> */}
+        <PriceFilter/>
 
         <section className="sidebar-single-area product-tags-area">
           <h3 className="sidebar-single-area__title">Product tags</h3>
