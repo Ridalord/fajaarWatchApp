@@ -2,9 +2,6 @@ import Slider from '@mui/material/Slider';
 import { useState } from 'react';
 
 
-function valuetext(value: number) {
-  return `$${value}`;
-}
 
 export default function PriceFilter() {
   const [value, setValue] = useState<number[]>([240, 420]);
@@ -20,8 +17,6 @@ export default function PriceFilter() {
         getAriaLabel={() => 'Price range'}
         value={value}
         onChange={handleChange}
-        valueLabelDisplay="auto"
-        getAriaValueText={valuetext}
         min={240}
         max={420}
         className='slider-keypress'

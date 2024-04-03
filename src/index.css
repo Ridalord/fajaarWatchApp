@@ -21811,7 +21811,7 @@ a.fz-hamburger {
   color: #B8860B;
 }
 
-.fz-sidebar .sidebar-single-area.price-filter-area .noUi-target {
+.fz-sidebar .sidebar-single-area.price-filter-area .MuiSlider-rail {
   background: #eaeaea;
   border-radius: 4px;
   height: 4px;
@@ -21828,13 +21828,13 @@ a.fz-hamburger {
   content: none;
 }
 
-.fz-sidebar .sidebar-single-area.price-filter-area .noUi-horizontal .noUi-handle {
+.fz-sidebar .sidebar-single-area.price-filter-area .MuiSlider-thumb {
   height: 12px;
   width: 12px;
   border: 2px solid #B8860B;
   border-radius: 50%;
   right: -3px;
-  top: -4px;
+  /* top: -4px; */
   cursor: pointer;
 }
 
@@ -25849,4 +25849,8 @@ body::-webkit-scrollbar-thumb:hover {
 
 table{
   width: 100%;
+}
+
+.MuiSlider-root{
+  color: #B8860B !important;
 }
