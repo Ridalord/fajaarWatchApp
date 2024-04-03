@@ -1,29 +1,12 @@
-import useProducts from "../../hooks/useProducts";
-import { useState, useEffect } from "react";
+import { CategoryCount } from "./Sidebar";
 
 
-type CategoryCount = {
-  name: string;
-  count: number;
-};
+type PropTypes = {
+  categories: CategoryCount[]
+}
 
-export default function ProductCategory() {
-  const { products } = useProducts();
-  const [categories, setCategories] = useState<CategoryCount[]>([]); // Specify the type of state
-
-  useEffect(() => {
-    if (products.length > 0) {
-      const uniqueCategories = [...new Set(products.map(product => product.category))];
-      const categoryCounts: CategoryCount[] = uniqueCategories.map(category => {
-        return {
-          name: category,
-          count: products.reduce((total, product) => (product.category === category ? total + 1 : total), 0)
-        };
-      });
-      setCategories(categoryCounts);
-    }
-  }, [products]);
-
+export default function ProductCategory({categories}:PropTypes) {
+  
   return (
     <section className="sidebar-single-area product-categories-area">
       <h3 className="sidebar-single-area__title">Product categories</h3>

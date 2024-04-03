@@ -21902,7 +21902,7 @@ a.fz-hamburger {
   font-weight: 300;
 }
 
-.fz-sidebar .sidebar-single-area.product-tags-area .tags a:hover {
+.fz-sidebar .sidebar-single-area.product-tags-area .tags a:hover, .fz-sidebar .sidebar-single-area.product-tags-area .tags a.clicked {
   background-color: #B8860B;
   border-color: #B8860B;
   color: #ffffff;
