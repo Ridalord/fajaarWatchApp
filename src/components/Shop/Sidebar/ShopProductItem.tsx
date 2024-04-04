@@ -7,6 +7,7 @@ import useWishlist from "../../hooks/useWishlist"
 import { getDownloadURL, getStorage, list, ref } from "@firebase/storage";
 import { useEffect, useState } from "react"
 import { Bag } from "react-bootstrap-icons"
+import Rating from '@mui/material/Rating';
 
 
 type PropTypes = {
@@ -83,11 +84,7 @@ export default function ShopProductItem({ product }: PropTypes) {
             </p>
 
             <div className="rating list-view-text">
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-solid fa-star"></i>
-              <i className="fa-light fa-star"></i>
+              <Rating name="half-rating-read" defaultValue={product.rating} precision={0.1} readOnly size="small" />
             </div>
           </div>
 

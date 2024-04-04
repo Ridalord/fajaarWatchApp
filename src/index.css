@@ -22319,6 +22319,7 @@ a.fz-hamburger {
 .list-view-on .fz-1-single-product .fz-single-product__price-rating .rating {
   color: goldenrod;
   font-size: 12px;
+  margin-bottom: -10px;
 }
 
 .list-view-on .fz-1-single-product .fz-single-product__price {
@@ -22503,6 +22504,7 @@ a.fz-hamburger {
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   margin-top: 30px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1199px) {
