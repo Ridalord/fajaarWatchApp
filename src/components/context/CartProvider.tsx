@@ -47,7 +47,11 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
 
       const quantity: number = itemExists ? itemExists.quantity + 1 : 1
 
-      return { ...state, cart: [...filteredCart, { id, name, price, quantity, category, description, rating, reviews }] }
+      const updatedCart = [...filteredCart, { id, name, price, quantity, category, description, rating, reviews }]
+
+      localStorage.setItem('cart', JSON.stringify(updatedCart))
+
+      return { ...state, cart:  updatedCart}
     }
     case REDUCER_ACTON_TYPE.REMOVE: {
       if (!action.payload) {
@@ -57,8 +61,12 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
       const { id } = action.payload
 
       const filteredCart: CartItemType[] = state.cart.filter(item => item.id != id)
+
+      const updatedCart = [...filteredCart]
+
+      localStorage.setItem('cart', JSON.stringify(updatedCart))
       
-      return { ...state, cart: [...filteredCart] }
+      return { ...state, cart: updatedCart }
     }
     case REDUCER_ACTON_TYPE.QUANTITY: {
       if (!action.payload) {
@@ -77,10 +85,14 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
 
       const updatedItem: CartItemType = { ...itemExists, quantity }
 
-      return { ...state, cart: [...filteredCart, updatedItem] }
+      const updatedCart = [...filteredCart, updatedItem]
+
+      localStorage.setItem('cart', JSON.stringify(updatedCart))
+
+      return { ...state, cart: updatedCart }
     }
     case REDUCER_ACTON_TYPE.SUBMIT: {
-      // localStorage.setItem('cart', JSON.stringify([]));
+      localStorage.setItem('cart', JSON.stringify([]));
       return { ...state, cart: [] }
     }
     case REDUCER_ACTON_TYPE.LOAD_CART: {
