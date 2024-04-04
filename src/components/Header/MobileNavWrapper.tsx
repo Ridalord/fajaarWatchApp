@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Search, Bag, Heart, X} from "react-bootstrap-icons";
 import classes from "./MobileNavWrapper.module.css"
 import Accordion from 'react-bootstrap/Accordion';
+import { Link } from 'react-router-dom';
 
 
 
@@ -36,10 +37,10 @@ export default function MobileNavWrapper({ showNavMobile, setShowNavMobile }: Pr
             <div className="mean-bar"><a href="#nav" className="meanmenu-reveal" style={{ right: "0px", left: "auto", display: "inline-block" }}><span><span><span></span></span></span></a><nav className="mean-nav">
               <ul className="align-items-center" >
                 <li className="fz-nav-item">
-                  <a role="button" className="fz-nav-link"><span>HOME</span></a>
+                  <Link to="/" role="button" className="fz-nav-link"><span>HOME</span></Link>
                 </li>
                 <li className="fz-dropdown fz-nav-item">
-                  <a role="button" className="fz-nav-link"><span>SHOP</span></a>
+                  <Link to="/shop" role="button" className="fz-nav-link"><span>SHOP</span></Link>
                 </li>
                 <li className="fz-dropdown fz-nav-item">
                   {/* <Accordion
@@ -71,11 +72,11 @@ export default function MobileNavWrapper({ showNavMobile, setShowNavMobile }: Pr
                       <Accordion.Header className={classes.accordionHeader}>PAGES</Accordion.Header>
                       <Accordion.Body className={classes.accordionBody}>
                         <ul className="fz-submenu">
-                          <li><a href="about.html" className="fz-nav-link fz-submenu-nav-link">ABOUT</a></li>
-                          <li><a href="faq.html" className="fz-nav-link fz-submenu-nav-link">FAQ</a></li>
-                          <li><a href="cart.html" className="fz-nav-link fz-submenu-nav-link">CART</a></li>
-                          <li><a href="account.html" className="fz-nav-link fz-submenu-nav-link">ACCOUNT</a></li>
-                          <li><a href="checkout.html" className="fz-nav-link fz-submenu-nav-link">CHECKOUT</a></li>
+                          <li><Link to="/" className="fz-nav-link fz-submenu-nav-link">ABOUT</Link></li>
+                          <li><Link to="/" className="fz-nav-link fz-submenu-nav-link">FAQ</Link></li>
+                          <li><Link to="/" className="fz-nav-link fz-submenu-nav-link">CART</Link></li>
+                          <li><Link to="/" className="fz-nav-link fz-submenu-nav-link">ACCOUNT</Link></li>
+                          <li><Link to="/" className="fz-nav-link fz-submenu-nav-link">CHECKOUT</Link></li>
                         </ul>
                       </Accordion.Body>
                     </Accordion.Item>
