@@ -25854,3 +25854,19 @@ table{
 .MuiSlider-root{
   color: #B8860B !important;
 }
+
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  font-size: 14px !important;
+  outline: grey !important;
+  outline-color: grey !important;
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected{
+  font-weight: 600 !important;
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root{
+  font-size: 14px !important;
+}
