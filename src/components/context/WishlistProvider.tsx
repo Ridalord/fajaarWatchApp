@@ -27,9 +27,10 @@ const reducer = (state: WishlistStateType, action: ReducerAction): WishlistState
       const { name, price, id, category, description, rating, reviews, quantity } = action.payload
 
       const filteredWishlist: CartItemType[] = state.wishlist.filter(item => item.id != id)
-      
-      return { ...state, wishlist: [...filteredWishlist, { name, price, id, category, description, rating, reviews, quantity }] }
+      const updatedWishlist = [...filteredWishlist, { name, price, id, category, description, rating, reviews, quantity }]
 
+      localStorage.setItem('wishlist', JSON.stringify(updatedWishlist))
+      return { ...state, wishlist: updatedWishlist }
     }
     case REDUCER_ACTION_TYPE.REMOVE: {
       if (!action.payload) {
@@ -39,6 +40,8 @@ const reducer = (state: WishlistStateType, action: ReducerAction): WishlistState
       const { id } = action.payload
 
       const filteredWishlist: CartItemType[] = state.wishlist.filter(item => item.id != id)
+
+      localStorage.setItem('wishlist', JSON.stringify(filteredWishlist))
 
       return { ...state, wishlist: [...filteredWishlist] }
 
@@ -58,7 +61,7 @@ const useWishlistContext = (initWishlistState: WishlistStateType) => {
   const wishlist = state.wishlist
   const totalWishlistItem = wishlist.length
 
-  return {dispatch, REDUCER_ACTIONS, wishlist, totalWishlistItem}
+  return { dispatch, REDUCER_ACTIONS, wishlist, totalWishlistItem }
 }
 
 export type UseWishlistContextType = ReturnType<typeof useWishlistContext>
