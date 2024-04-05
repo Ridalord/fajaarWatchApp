@@ -13,7 +13,7 @@ export default function BannerContent({bannerPrice, bannerTitle, bannerImage}: P
         <div className="fz-6-sub-banner-txt">
           <h2 className="fz-6-sub-banner-title">{ bannerTitle }</h2>
           <h6 className="fz-7-sub-banner-price">${bannerPrice.toFixed(2)}</h6>
-          <Button link="shop.html" text="Shop Now" type="" />
+          <Button link="/shop" text="Shop Now" type="" />
         </div>
 
         <div className="fz-6-sub-banner-img">
