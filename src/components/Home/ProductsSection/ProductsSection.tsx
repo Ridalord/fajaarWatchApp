@@ -3,6 +3,7 @@ import useProducts from "../../hooks/useProducts";
 import useCart from "../../hooks/useCart";
 import useWishlist from "../../hooks/useWishlist";
 import ProductItem from "./ProductItem";
+import { Link } from "react-router-dom";
 
 
 
@@ -80,9 +81,8 @@ export default function ProductsSection() {
           ))}
         </div>
 
-        {/* More Products Button */}
         <div className="text-center">
-          <a href="shop.html" className="fz-6-sub-banner-btn fz-7-products-btn mt-30">More Products</a>
+          <Link to="/shop" className="fz-6-sub-banner-btn fz-7-products-btn mt-30">More Products</Link>
         </div>
       </div>
     </section>
