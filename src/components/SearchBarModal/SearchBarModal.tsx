@@ -12,8 +12,8 @@ export default function SearchBarModal({ setShowSearchBar, showSearchBar }: Prop
     setShowSearchBar(prev=>!prev)
   }
   return (
-    <div className={`overlay ${showSearchBar ? "open" : null}`} data-aos="fade-down">
-      <div className={`fz-cbsearchbar fz-cb-sidebar-area fz-7-body ${showSearchBar ? 'fz-cb-searchbar-opened' : null}`}>
+    <div className={`overlay ${showSearchBar ? "open" : null}`}>
+      <div className={`fz-cbsearchbar fz-cb-sidebar-area fz-7-body ${showSearchBar ? 'fz-cb-searchbar-opened' : null}`} data-aos="fade-down">
         <button className="fz-cbsearchbar__close" onClick={handleClickSearch}><X /></button>
         <div className="search-wrap text-center">
           <div className="container">
