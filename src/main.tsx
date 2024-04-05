@@ -8,9 +8,11 @@ import { ProductsProvider } from './components/context/ProductsProvider.tsx';
 import { WishlistProvider } from './components/context/WishlistProvider.tsx';
 import { CartProvider } from './components/context/CartProvider.tsx';
 import { BlogPostsProvider } from './components/context/BlogProvider.tsx';
+import {  MantineProvider } from '@mantine/core';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <MantineProvider>
     <ProductsProvider>
       <WishlistProvider>
         <CartProvider>
@@ -19,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           </BlogPostsProvider>
         </CartProvider>
       </WishlistProvider>
-    </ProductsProvider>
+      </ProductsProvider>
+    </MantineProvider>
   </React.StrictMode>,
 )

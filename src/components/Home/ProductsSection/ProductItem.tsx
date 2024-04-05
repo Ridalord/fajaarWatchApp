@@ -6,6 +6,7 @@ import { ProductType } from "../../context/ProductsProvider";
 import { useEffect, useState } from "react";
 import useProducts from "../../hooks/useProducts";
 import { getDownloadURL, getStorage, list, ref } from "@firebase/storage";
+import { Loader } from '@mantine/core';
 
 
 type PropTypes = {
@@ -54,7 +55,7 @@ export default function ProductItem({ product, type }: PropTypes) {
     <div className={type==="slider"? 'col-11':`col-lg-3 col-md-4 col-6 col-xxs-12`}>
       <div className="fz-7-product">
         <div className="fz-7-product-img">
-          <img src={imageUrls[product.id]?.[0] || "#"} alt={product.name} />
+          {imageUrls[product.id]?.[0] ? <img src={imageUrls[product.id]?.[0] || "#"} alt={product.name} /> : <Loader color="#B8860B" size="lg" type="dots" />}
         </div>
         <div className="fz-7-product-txt">
           <h6 className="fz-7-product-cat">{product.category}</h6>

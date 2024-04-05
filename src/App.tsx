@@ -11,6 +11,7 @@ import WishlistModal from "./components/WishlistModal/WishlistModal";
 import CartModal from "./components/CartModal/CartModal";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import '@mantine/core/styles.css';
 
 function App() {
   const [load] = useState(true);
