@@ -17,8 +17,8 @@ export default function WishlistModal({showWishlist, setShowWishlist}: PropTypes
     setShowWishlist(prev => !prev)
   }
   return (
-    <div className={`overlay ${showWishlist? 'open': null}`}>
-      <div className={`cart-area cart-area-modal fz-7-body fz-wishlist-modal ${showWishlist? 'open': null}`}>
+    <div className={`overlay ${showWishlist ? 'open' : null}`}>
+      <div className={`cart-area cart-area-modal fz-7-body fz-wishlist-modal ${showWishlist ? 'open' : null}`} data-aos="fade-down">
         <div className="cart__header">
           <h3 className="cart__title">Your Wishlist</h3>
           <button className="cart-area-modal-close-btn" onClick={onCloseWishlist}><X/></button>
