@@ -8,6 +8,7 @@ import { getDownloadURL, getStorage, list, ref } from "@firebase/storage";
 import { useEffect, useState } from "react"
 import { Bag } from "react-bootstrap-icons"
 import Rating from '@mui/material/Rating';
+import { Loader } from "@mantine/core"
 
 
 type PropTypes = {
@@ -56,7 +57,7 @@ export default function ShopProductItem({ product }: PropTypes) {
     <div className="col-xl-4 col-md-4 col-6 col-xxs-12">
       <div className="fz-1-single-product">
         <div className="fz-single-product__img">
-          <img src={imageUrls[product.id]?.[0] || "#"} alt={product.name} />
+          {imageUrls[product.id]?.[0] ? <img src={imageUrls[product.id]?.[0] || "#"} alt={product.name} /> : <Loader color="#B8860B" size="lg" type="dots" />}
           <div className="fz-single-product__actions">
             <button className="fz-add-to-wishlist-btn" onClick={() => wishlistDispatch({ type: WISHLIST_REDUCER_ACTION.ADD, payload: { ...product, quantity: 1 } })}>
               <span className="btn-txt">add To wishlist</span>
@@ -68,10 +69,7 @@ export default function ShopProductItem({ product }: PropTypes) {
               <span className="btn-icon"><Bag /></span>
             </button>
 
-            {/* <button className="fz-add-to-compare-btn">
-              <span className="btn-txt">select to compare</span>
-              <span className="btn-icon"><i className="fa-light fa-arrow-right-arrow-left"></i></span>
-            </button> */}
+            
           </div>
         </div>
 
@@ -106,10 +104,6 @@ export default function ShopProductItem({ product }: PropTypes) {
               <span className="btn-icon"><Bag /></span>
             </button>
 
-            {/* <button className="fz-add-to-compare-btn">
-              <span className="btn-txt">select to compare</span>
-              <span className="btn-icon"><i className="fa-light fa-arrow-right-arrow-left"></i></span>
-            </button> */}
           </div>
         </div>
       </div>

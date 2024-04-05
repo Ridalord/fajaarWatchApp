@@ -1991,6 +1991,10 @@ img {
 
 .fz-1-single-product .fz-single-product__img {
   position: relative;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .fz-1-single-product .fz-single-product__img img {
