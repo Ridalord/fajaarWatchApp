@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import DealImage from "../../../assets/images/fz-7-flash-img.png";
 // import BackgroundImg from "./fz-7-flash-bg.png"
 
@@ -29,9 +30,9 @@ export default function Deal() {
                   </div>
                   <div className="syotimer__footer"></div>
                 </div>
-                <a href="#" className="fz-6-sub-banner-btn">
+                <Link to="/shop" className="fz-6-sub-banner-btn">
                   Shop Now
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -43,7 +44,7 @@ export default function Deal() {
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
     </section>
   );
 }
