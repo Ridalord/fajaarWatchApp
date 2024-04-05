@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Cat1 from "./fz-7-cat-1.jpg"
 import Cat2 from "./fz-7-cat-2.jpg"
 
@@ -14,7 +15,7 @@ export default function Category() {
               <div className="fz-7-category-txt">
                 <h5 className="fz-7-category-sub-title">save 40%</h5>
                 <h3 className="fz-7-category-title">Men SmartWatch</h3>
-                <a href="shop.html" className="fz-6-sub-banner-btn">Shop Now</a>
+                <Link to="/shop" className="fz-6-sub-banner-btn">Shop Now</Link>
               </div>
 
               <div className="fz-7-category-img">
@@ -34,7 +35,7 @@ export default function Category() {
               <div className="fz-7-category-txt">
                 <h5 className="fz-7-category-sub-title">save 40%</h5>
                 <h3 className="fz-7-category-title">Women SmartWatch</h3>
-                <a href="shop.html" className="fz-6-sub-banner-btn">Shop Now</a>
+                <Link to="/shop" className="fz-6-sub-banner-btn">Shop Now</Link>
               </div>
             </div>
           </div>
