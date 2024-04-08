@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 type PropTypes = {
   page: string
 }
@@ -24,7 +26,7 @@ export default function Breadcrumbs({ page }: PropTypes) {
             <div className="breadcrumb-txt">
               <h1>{breadcrumbHeader}</h1>
               <ul className="fz-inner-page-breadcrumb-nav">
-                <li><a href="index.html">Home</a></li>
+                <li><Link to="/">Home</Link></li>
                 <li className="current-page">{pageName}</li>
               </ul>
             </div>
