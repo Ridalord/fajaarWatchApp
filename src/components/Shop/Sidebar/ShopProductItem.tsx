@@ -9,6 +9,7 @@ import { useEffect, useState } from "react"
 import { Bag } from "react-bootstrap-icons"
 import Rating from '@mui/material/Rating';
 import { Loader } from "@mantine/core"
+import { toast } from "react-toastify"
 
 
 type PropTypes = {
@@ -53,18 +54,28 @@ export default function ShopProductItem({ product }: PropTypes) {
     };
     fetchImages();
   }, [products]);
+
+  const onAddToCartClick = () => {
+    dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, quantity: 1 } })
+    toast.success(`${product.name} added to cart!`)
+  }
+
+  const onAddToWishlist = () => {
+    wishlistDispatch({ type: WISHLIST_REDUCER_ACTION.ADD, payload: { ...product, quantity: 1 } })
+    toast.success(`${product.name} added to wishlist!`)
+  }
   return (
     <div className="col-xl-4 col-md-4 col-6 col-xxs-12">
       <div className="fz-1-single-product">
         <div className="fz-single-product__img">
           {imageUrls[product.id]?.[0] ? <img src={imageUrls[product.id]?.[0] || "#"} alt={product.name} /> : <Loader color="#B8860B" size="lg" type="dots" />}
           <div className="fz-single-product__actions">
-            <button className="fz-add-to-wishlist-btn" onClick={() => wishlistDispatch({ type: WISHLIST_REDUCER_ACTION.ADD, payload: { ...product, quantity: 1 } })}>
+            <button className="fz-add-to-wishlist-btn" onClick={onAddToWishlist}>
               <span className="btn-txt">add To wishlist</span>
               <span className="btn-icon"><FontAwesomeIcon icon={faHeart} /></span>
             </button>
 
-            <button className="fz-add-to-cart-btn" onClick={() => dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, quantity: 1 } })}>
+            <button className="fz-add-to-cart-btn" onClick={onAddToCartClick}>
               <span className="btn-txt">add To cart</span>
               <span className="btn-icon"><Bag /></span>
             </button>
