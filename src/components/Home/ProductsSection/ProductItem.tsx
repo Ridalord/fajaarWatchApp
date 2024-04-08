@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import useProducts from "../../hooks/useProducts";
 import { getDownloadURL, getStorage, list, ref } from "@firebase/storage";
 import { Loader } from '@mantine/core';
+import { toast } from "react-toastify";
 
 
 type PropTypes = {
@@ -51,6 +52,16 @@ export default function ProductItem({ product, type }: PropTypes) {
     fetchImages();
   }, [products]);
 
+  const onAddToCartClick = () => {
+    dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, quantity: 1 } })
+    toast.success(`${product.name} added to cart!`)
+  }
+
+  const onAddToWishlist = () => {
+    wishlistDispatch({ type: WISHLIST_REDUCER_ACTION.ADD, payload: { ...product, quantity: 1 } })
+    toast.success(`${product.name} added to wishlist!`)
+  }
+
   return (
     <div className={type==="slider"? 'col-11':`col-lg-3 col-md-4 col-6 col-xxs-12`}>
       <div className="fz-7-product">
@@ -64,9 +75,9 @@ export default function ProductItem({ product, type }: PropTypes) {
           </h4>
           <span className="fz-7-product-price">${product.price.toFixed(2)}</span>
           <div className="fz-7-product-actions">
-            <button type="button" className="add-to-cart-btn" onClick={() => dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, quantity: 1 } })}>Add To Cart</button>
+            <button type="button" className="add-to-cart-btn" onClick={onAddToCartClick}>Add To Cart</button>
             <div className="right">
-              <button type="button" className="add-to-wishlist-btn" onClick={() => wishlistDispatch({ type: WISHLIST_REDUCER_ACTION.ADD, payload: { ...product, quantity: 1 } })}>
+              <button type="button" className="add-to-wishlist-btn" onClick={onAddToWishlist}>
                 {/* <i className="fa-light fa-heart"></i> */}
                 <FontAwesomeIcon icon={faHeart} />
               </button>

@@ -12,6 +12,8 @@ import CartModal from "./components/CartModal/CartModal";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import '@mantine/core/styles.css';
+import { ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [load] = useState(true);
@@ -101,6 +103,7 @@ function App() {
         {showCart ? (
           <CartModal showCart={showCart} setShowCart={setShowCart} />
         ) : null}
+        <ToastContainer />
       </div>
     </Router>
   );
