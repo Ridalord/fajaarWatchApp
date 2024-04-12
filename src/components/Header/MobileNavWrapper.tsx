@@ -28,6 +28,9 @@ export default function MobileNavWrapper({ showNavMobile, setShowNavMobile }: Pr
     event?.preventDefault()
     setShowNavMobile((prevExpanded) => !prevExpanded);
   };
+  const handleCloseNavMobile = () => {
+    setShowNavMobile(false);
+  };
   return (
     <div className={`fz-offcanvas-main-nav-wrapper fz-7-body ${showNavMobile? 'open' : null}`}>
       <button className="fz-button-close" onClick={handleToggleNavMobile}><X/> </button>
@@ -37,46 +40,22 @@ export default function MobileNavWrapper({ showNavMobile, setShowNavMobile }: Pr
             <div className="mean-bar"><a href="#nav" className="meanmenu-reveal" style={{ right: "0px", left: "auto", display: "inline-block" }}><span><span><span></span></span></span></a><nav className="mean-nav">
               <ul className="align-items-center" >
                 <li className="fz-nav-item">
-                  <Link to="/" role="button" className="fz-nav-link"><span>HOME</span></Link>
+                  <Link to="/" onClick={handleCloseNavMobile} role="button" className="fz-nav-link"><span>HOME</span></Link>
                 </li>
                 <li className="fz-dropdown fz-nav-item">
-                  <Link to="/shop" role="button" className="fz-nav-link"><span>SHOP</span></Link>
+                  <Link to="/shop" onClick={handleCloseNavMobile} role="button" className="fz-nav-link"><span>SHOP</span></Link>
                 </li>
                 <li className="fz-dropdown fz-nav-item">
-                  {/* <Accordion
-                    expanded={expanded}
-                    onChange={handleExpansion}
-                    slots={{ transition: Fade as AccordionSlots['transition'] }}
-                    slotProps={{ transition: { timeout: 400 } }}
-                    sx={{
-                      '& .MuiAccordion-region': { height: expanded ? 'auto' : 0 },
-                      '& .MuiAccordionDetails-root': { display: expanded ? 'block' : 'none' },
-                    }}
-                  >
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1-content"
-                      id="panel1-header"
-                    >
-                      <Typography>Custom transition using Fade</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                        malesuada lacus ex, sit amet blandit leo lobortis eget.
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion> */}
                   <Accordion className={classes.accordionWrap}>
                     <Accordion.Item eventKey="0">
                       <Accordion.Header className={classes.accordionHeader}>PAGES</Accordion.Header>
                       <Accordion.Body className={classes.accordionBody}>
                         <ul className="fz-submenu">
-                          <li><Link to="/" className="fz-nav-link fz-submenu-nav-link">ABOUT</Link></li>
-                          <li><Link to="/" className="fz-nav-link fz-submenu-nav-link">FAQ</Link></li>
-                          <li><Link to="/" className="fz-nav-link fz-submenu-nav-link">CART</Link></li>
-                          <li><Link to="/" className="fz-nav-link fz-submenu-nav-link">ACCOUNT</Link></li>
-                          <li><Link to="/" className="fz-nav-link fz-submenu-nav-link">CHECKOUT</Link></li>
+                          <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">ABOUT</Link></li>
+                          <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">FAQ</Link></li>
+                          <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">CART</Link></li>
+                          <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">ACCOUNT</Link></li>
+                          <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">CHECKOUT</Link></li>
                         </ul>
                       </Accordion.Body>
                     </Accordion.Item>
