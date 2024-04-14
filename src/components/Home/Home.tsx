@@ -1,16 +1,18 @@
-import AmazingBanner from "./AmazingBanner/AmazingBanner";
-import Category from "./Category/Category";
-import Hero from "./Hero/Hero";
-import ProductsSection from "./ProductsSection/ProductsSection";
-import TrendingProducts from "./TrendingProducts/TrendingProducts";
-import Deal from "./DealOfTheDay/Deal";
-import Brands from "./Brands/Brands";
-import EmailSignup from "./EmailSignup/EmailSignup";
-import BlogPosts from "./BlogPostSection/BlogPosts";
+import { Title } from 'react-admin';
+import AmazingBanner from './AmazingBanner/AmazingBanner';
+import Category from './Category/Category';
+import Hero from './Hero/Hero';
+import ProductsSection from './ProductsSection/ProductsSection';
+import TrendingProducts from './TrendingProducts/TrendingProducts';
+import Deal from './DealOfTheDay/Deal';
+import Brands from './Brands/Brands';
+import EmailSignup from './EmailSignup/EmailSignup';
+import BlogPosts from './BlogPostSection/BlogPosts';
 
 export default function Home() {
   return (
     <>
+      <Title title="Home Page"/>
       <Hero />
       <Category />
       <ProductsSection />
@@ -19,7 +21,7 @@ export default function Home() {
       <Deal />
       <BlogPosts />
       <Brands />
-      <EmailSignup/>
+      <EmailSignup />
     </>
   );
 }
