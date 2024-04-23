@@ -7,11 +7,11 @@ import { MenuItem } from "@mui/material";
 import { Grid, ListCheck } from "react-bootstrap-icons";
 
 export default function ShopArea() {
-  const { products } = useProducts();
+  const { filteredProducts, loading } = useProducts();
   const [sorting, setSorting] = useState('menu_order');
   const [viewType, setViewType] = useState('grid');
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 9;
+  const productsPerPage = Math.min(9, filteredProducts.length);
 
   const handleChange = (event: SelectChangeEvent) => {
     setSorting(event.target.value);
@@ -25,9 +25,9 @@ export default function ShopArea() {
     setViewType('list');
   };
 
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const indexOfLastProduct: number = Math.min(currentPage * productsPerPage, filteredProducts.length);
+  const indexOfFirstProduct: number = Math.min(indexOfLastProduct - productsPerPage, filteredProducts.length);
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -41,7 +41,7 @@ export default function ShopArea() {
             <div className="product-view-actions">
               <div className="row gy-3 align-items-center">
                 <div className="col-xxl-6 col-xl-6 col-lg-5 col-6 col-xxs-12 text-center text-md-start">
-                  <p className="text-center text-sm-start">Showing {indexOfFirstProduct + 1}-{indexOfLastProduct} of {products.length} results</p>
+                  <p className="text-center text-sm-start">Showing {indexOfFirstProduct + 1}-{indexOfLastProduct} of {filteredProducts.length} results</p>
                 </div>
 
                 <div className="col-xxl-6 col-xl-6 col-lg-7 col-6 col-xxs-12 col-sm-6">
@@ -82,13 +82,13 @@ export default function ShopArea() {
 
             <div className={`fz-inner-products-container ${viewType === 'list' ? 'list-view-on' : ''}`}>
               <div className="row">
-                {currentProducts.map((product) => <ShopProductItem product={product} key={product.id} />)}
+                {loading ? <p>Loading...</p> : currentProducts.map((product) => <ShopProductItem product={product} key={product.id} />)}
               </div>
             </div>
 
             <nav className="fz-shop-pagination">
               <ul className="page-numbers">
-                {Array.from({ length: Math.ceil(products.length / productsPerPage) }, (_, index) => (
+                {Array.from({ length: Math.ceil(filteredProducts.length / productsPerPage) }, (_, index) => (
                   <li key={index} onClick={() => paginate(index + 1)}>
                     <div className={`page-number-btn ${currentPage === index + 1 ? 'current' : ''}`}>
                       <span aria-current="page" className="page-number current">{index + 1}</span>

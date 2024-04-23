@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, ReactElement } from "react";
+import { createContext, useEffect, useReducer, ReactElement, useState } from "react";
 import { db } from "../../config/firebase";
 import { collection, getDocs } from "@firebase/firestore";
 
@@ -23,16 +23,60 @@ const initState: ProductType[] = [];
 
 export type UseProductsContextType = {
   products: ProductType[];
+  filteredProducts: ProductType[];
+  dispatch: React.Dispatch<Action>;
+  loading: boolean,
 };
 
-const initContextState: UseProductsContextType = { products: initState };
+type State = {
+  products: ProductType[];
+  originalProducts: ProductType[];
+  filteredProducts: ProductType[];
+  minPrice: number;
+  maxPrice: number;
+  searchText: string;
+};
 
-const ProductsContext = createContext<UseProductsContextType>(initContextState);
+type Action =
+  | { type: "SET_PRODUCTS"; payload: ProductType[] }
+  | { type: "SET_PRICE_RANGE"; payload: { minPrice: number; maxPrice: number } }
+  | { type: "SET_SEARCH_TEXT"; payload: string };
+
+const initialState: State = {
+  products: initState,
+  originalProducts: initState,
+  filteredProducts: initState,
+  minPrice: 240,
+  maxPrice: 600,
+  searchText: "",
+};
+
+const productsReducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case "SET_PRODUCTS":
+      return { ...state, products: action.payload, originalProducts: action.payload, filteredProducts: action.payload };
+    case "SET_PRICE_RANGE":
+      return {
+        ...state, minPrice: action.payload.minPrice, maxPrice: action.payload.maxPrice, filteredProducts: state.products.filter((product) => product.price >= action.payload.minPrice && product.price <= action.payload.maxPrice) };
+    case "SET_SEARCH_TEXT":
+      return { ...state, searchText: action.payload };
+    default:
+      return state;
+  }
+};
+
+const ProductsContext = createContext<UseProductsContextType>({
+  products: initState,
+  filteredProducts: initState,
+  dispatch: () => { },
+  loading: true, // Initialize loading state as true
+});
 
 type ChildrenType = { children?: ReactElement | ReactElement[] };
 
 export const ProductsProvider = ({ children }: ChildrenType): ReactElement => {
-  const [products, setProducts] = useState<ProductType[]>(initState);
+  const [state, dispatch] = useReducer(productsReducer, initialState);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async (): Promise<void> => {
@@ -41,7 +85,6 @@ export const ProductsProvider = ({ children }: ChildrenType): ReactElement => {
         const snapshot = await getDocs(productsRef);
         const fetchedProducts: ProductType[] = snapshot.docs.map((doc) => {
           const productData = doc.data();
-          // Make sure each product document contains all required properties
           return {
             id: doc.id,
             name: productData.name || "",
@@ -52,20 +95,33 @@ export const ProductsProvider = ({ children }: ChildrenType): ReactElement => {
             reviews: productData.reviews || [],
           };
         });
-        setProducts(fetchedProducts);
+        dispatch({ type: "SET_PRODUCTS", payload: fetchedProducts });
+        setLoading(false); // Set loading state to false when products are fetched
       } catch (err) {
         console.error("Error fetching products:", err);
+        setLoading(false); // Set loading state to false in case of error
       }
     };
 
     fetchProducts();
   }, []);
 
+
+  // const setPriceRange = (minPrice: number, maxPrice: number): void => {
+  //   dispatch({ type: "SET_PRICE_RANGE", payload: { minPrice, maxPrice } });
+  // };
+
+  // const setSearchText = (text: string): void => {
+  //   dispatch({ type: "SET_SEARCH_TEXT", payload: text });
+  // };
+
   return (
-    <ProductsContext.Provider value={{ products }}>
+    <ProductsContext.Provider
+      value={{ products: state.originalProducts, filteredProducts: state.filteredProducts, dispatch, loading }}
+    >
       {children}
     </ProductsContext.Provider>
   );
 };
 
-export default ProductsContext
+export default ProductsContext;

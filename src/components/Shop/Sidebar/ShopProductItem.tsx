@@ -93,7 +93,7 @@ export default function ShopProductItem({ product }: PropTypes) {
             </p>
 
             <div className="rating list-view-text">
-              <Rating name="half-rating-read" defaultValue={product.rating} precision={0.1} readOnly size="small" />
+              <Rating name="half-rating-read" defaultValue={Number(product.rating)} precision={0.1} readOnly size="small" />
             </div>
           </div>
 

@@ -1,14 +1,22 @@
 import Slider from '@mui/material/Slider';
 import { useState } from 'react';
+import useProducts from '../../hooks/useProducts';
 
 
 
 export default function PriceFilter() {
-  const [value, setValue] = useState<number[]>([240, 420]);
+  const [value, setValue] = useState<number[]>([240, 600]);
+  const{dispatch} = useProducts()
 
   const handleChange = (_event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
   };
+
+  const onSubmitPriceRange = () => {
+    // console.log("values: ", value)
+    dispatch({ type: "SET_PRICE_RANGE", payload: { minPrice: value[0], maxPrice: value[1] } })
+    // console.log("Filtered Products: ", filteredProducts)
+  }
 
   return (
     <section className="sidebar-single-area price-filter-area">
@@ -18,7 +26,7 @@ export default function PriceFilter() {
         value={value}
         onChange={handleChange}
         min={240}
-        max={420}
+        max={600}
         className='slider-keypress'
       />
       <div className="price-filter d-flex align-items-center justify-content-between">
@@ -40,7 +48,7 @@ export default function PriceFilter() {
             </div>
           </div>
         </div>
-        <button type="submit" className="filter-price-btn fz-1-banner-btn">
+        <button type="submit" className="filter-price-btn fz-1-banner-btn" onClick={onSubmitPriceRange}>
           Filter
         </button>
       </div>
