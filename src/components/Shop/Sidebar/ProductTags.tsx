@@ -1,3 +1,4 @@
+import useProducts from "../../hooks/useProducts";
 import { CategoryCount } from "./Sidebar"
 
 type PropTypes = {
@@ -5,9 +6,16 @@ type PropTypes = {
 }
 
 export default function ProductTags({ categories }: PropTypes) {
+  const { dispatch } = useProducts();
+
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault(); 
     event.currentTarget.classList.toggle("clicked"); 
+    const categoryName = event.currentTarget.textContent;
+    if (categoryName) {
+      // console.log(categoryName.trim())
+      dispatch({ type: "SET_CATEGORY_FILTER", payload: categoryName.trim()});
+    }
   };
 
   return (

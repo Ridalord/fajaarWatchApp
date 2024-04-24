@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { createContext, useEffect, useReducer, ReactElement, useState } from "react";
 import { db } from "../../config/firebase";
 import { collection, getDocs } from "@firebase/firestore";
@@ -25,7 +26,7 @@ export type UseProductsContextType = {
   products: ProductType[];
   filteredProducts: ProductType[];
   dispatch: React.Dispatch<Action>;
-  loading: boolean,
+  loading: boolean;
 };
 
 type State = {
@@ -40,7 +41,8 @@ type State = {
 type Action =
   | { type: "SET_PRODUCTS"; payload: ProductType[] }
   | { type: "SET_PRICE_RANGE"; payload: { minPrice: number; maxPrice: number } }
-  | { type: "SET_SEARCH_TEXT"; payload: string };
+  | { type: "SET_SEARCH_TEXT"; payload: string }
+  | { type: "SET_CATEGORY_FILTER"; payload: string };
 
 const initialState: State = {
   products: initState,
@@ -57,9 +59,16 @@ const productsReducer = (state: State, action: Action): State => {
       return { ...state, products: action.payload, originalProducts: action.payload, filteredProducts: action.payload };
     case "SET_PRICE_RANGE":
       return {
-        ...state, minPrice: action.payload.minPrice, maxPrice: action.payload.maxPrice, filteredProducts: state.products.filter((product) => product.price >= action.payload.minPrice && product.price <= action.payload.maxPrice) };
+        ...state, minPrice: action.payload.minPrice, maxPrice: action.payload.maxPrice, filteredProducts: state.products.filter((product) => product.price >= action.payload.minPrice && product.price <= action.payload.maxPrice)
+      };
     case "SET_SEARCH_TEXT":
-      return { ...state, searchText: action.payload };
+      const searchText = action.payload.toLowerCase().trim();
+      const filteredByName = state.products.filter((product) => product.name.toLowerCase().includes(searchText));
+      return { ...state, searchText, filteredProducts: filteredByName };
+    case "SET_CATEGORY_FILTER":
+      const category = action.payload.toLowerCase().trim();
+      const filteredByCategory = state.products.filter((product) => product.category.toLowerCase().trim() === category);
+      return { ...state, filteredProducts: filteredByCategory };
     default:
       return state;
   }
