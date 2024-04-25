@@ -10,6 +10,7 @@ import { Bag } from "react-bootstrap-icons"
 import Rating from '@mui/material/Rating';
 import { Loader } from "@mantine/core"
 import { toast } from "react-toastify"
+import { Link } from "react-router-dom"
 
 
 type PropTypes = {
@@ -86,7 +87,7 @@ export default function ShopProductItem({ product }: PropTypes) {
 
         <div className="fz-single-product__txt">
           <span className="fz-single-product__category list-view-text">{product.category}</span>
-          <a href="shop-details.html" className="fz-single-product__title">{product.name }</a>
+            <Link to={`/shop/${product.id}`} className="fz-single-product__title">{product.name }</Link>
           <div className="fz-single-product__price-rating">
             <p className="fz-single-product__price">
               <span className="current-price">${product.price.toFixed(2)}</span>
@@ -117,7 +118,7 @@ export default function ShopProductItem({ product }: PropTypes) {
 
           </div>
         </div>
+        </div>
       </div>
-    </div>
   )
 }

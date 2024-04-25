@@ -45,7 +45,7 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
 
       const itemExists: CartItemType | undefined = state.cart.find(item => item.id === id)
 
-      const quantity: number = itemExists ? itemExists.quantity + 1 : 1
+      const quantity: number = itemExists ? action.payload.quantity || itemExists.quantity + 1 : action.payload.quantity !== undefined && action.payload.quantity !== null ? action.payload.quantity : 1;
 
       const updatedCart = [...filteredCart, { id, name, price, quantity, category, description, rating, reviews }]
 

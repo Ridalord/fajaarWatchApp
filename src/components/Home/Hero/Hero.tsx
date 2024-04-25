@@ -8,7 +8,7 @@ import HeroItem from "./HeroItem";
 import { ReactElement } from "react";
 import Image from "./rendering-smart-home-device.jpg"
 import Image2 from "./rendering-smart-home-device (1).jpg"
-import useBlogs from "../../hooks/useBlog";
+// import useBlogs from "../../hooks/useBlog";
 // import Casio from "./casio.jpg"
 
 
@@ -55,9 +55,9 @@ const HeroData: HeroDataType = [
 ]
 
 export default function Hero() {
-  const { blogPosts } = useBlogs()
+  // const { blogPosts } = useBlogs()
   
-  console.log("Blogs ", blogPosts)
+  // console.log("Blogs ", blogPosts)
 
   const settings: SettingTypes = {
     dots: false,

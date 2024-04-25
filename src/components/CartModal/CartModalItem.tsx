@@ -85,7 +85,7 @@ export default function CartModalItem({product}:PropTypes) {
             <button className="cart-product__minus" onClick={onSubtractQuantity}>-</button>
             <button className="cart-product__plus" onClick={onAddQuantity}> + </button>
           </div>
-          <input type="number" name="product-quantity-input" className="cart-product-quantity-input" min="0" value={product.quantity} />
+          <input type="number" name="product-quantity-input" className="cart-product-quantity-input" readOnly min="0" value={product.quantity} />
         </div>
       </td>
       <td>${product.quantity * product.price}</td>

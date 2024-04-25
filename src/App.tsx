@@ -12,8 +12,10 @@ import CartModal from "./components/CartModal/CartModal";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import '@mantine/core/styles.css';
-import { ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ProductDetails from "./components/Shop/ProductDetails"; // Assuming this is the correct import for the ProductDetails component
+// import { ProductType } from "./components/context/ProductsProvider";
 
 function App() {
   const [load] = useState(true);
@@ -63,7 +65,8 @@ function App() {
     };
   }, []);
 
-  
+  // Not sure what you're trying to do here with product, so I commented it out
+  // const product: ProductType;
 
   return (
     <Router basename="fajaarWatchApp">
@@ -85,6 +88,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Shop />} />
+            <Route path="/shop/:id" element={<ProductDetails />} /> {/* Pass ProductDetails component directly */}
           </Routes>
         </div>
         <Footer />
