@@ -8,6 +8,7 @@ import useProducts from "../../hooks/useProducts";
 import { getDownloadURL, getStorage, list, ref } from "@firebase/storage";
 import { Loader } from '@mantine/core';
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 
 type PropTypes = {
@@ -15,7 +16,7 @@ type PropTypes = {
   type: string,
 }
 interface ImageUrls {
-  [productId: string]: string[]; // Define an index signature for image URLs
+  [productId: string]: string[]; 
 }
 export default function ProductItem({ product, type }: PropTypes) {
   const { products } = useProducts()
@@ -71,18 +72,16 @@ export default function ProductItem({ product, type }: PropTypes) {
         <div className="fz-7-product-txt">
           <h6 className="fz-7-product-cat">{product.category}</h6>
           <h4 className="fz-7-product-title">
-            <a href="shop-details.html">{product.name}</a>
+            <Link to={`/shop/${product.id}`}>{product.name}</Link>
           </h4>
           <span className="fz-7-product-price">${product.price.toFixed(2)}</span>
           <div className="fz-7-product-actions">
             <button type="button" className="add-to-cart-btn" onClick={onAddToCartClick}>Add To Cart</button>
             <div className="right">
               <button type="button" className="add-to-wishlist-btn" onClick={onAddToWishlist}>
-                {/* <i className="fa-light fa-heart"></i> */}
                 <FontAwesomeIcon icon={faHeart} />
               </button>
               <button type="button" className="fz-quick-view">
-                {/* <i className="fa-light fa-eye"></i> */}
                 <FontAwesomeIcon icon={faEye} />
               </button>
             </div>
