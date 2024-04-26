@@ -12,6 +12,10 @@ import { Loader } from "@mantine/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 
 
 interface ImageUrls {
@@ -146,13 +150,13 @@ export default function ProductDetails() {
 
                                   <div className="fz-product-details__actions">
                                     <div className="fz-product-details__quantity cart-product__quantity">
-                                      <button className="minus-btn cart-product__minus" onClick={handleSubtractCount}><i className="fa-light fa-minus"></i></button>
+                                      <button className="minus-btn cart-product__minus" onClick={handleSubtractCount}>-</button>
                       <input readOnly type="number" name="product-quantity" id="product-quantity-input" className="cart-product-quantity-input" value={cartCount} />
-                                        <button className="plus-btn cart-product__plus" onClick={handleAddCount}><i className="fa-light fa-plus"></i></button>
+                                        <button className="plus-btn cart-product__plus" onClick={handleAddCount}>+</button>
                                     </div>
 
                                     <button className="fz-product-details__add-to-cart" onClick={handleAddToCart}>Add to cart</button>
-                                    <button className="fz-product-details__add-to-wishlist" onClick={handleAddToWishlist}><i className="fa-light fa-heart"></i></button>
+                                    <button className="fz-product-details__add-to-wishlist" onClick={handleAddToWishlist}><FontAwesomeIcon icon={faHeart}/></button>
                                   </div>
 
                                   <div className="fz-product-details__payment-methods">
