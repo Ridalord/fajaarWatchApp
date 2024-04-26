@@ -25879,3 +25879,19 @@ table{
 .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root{
   font-size: 14px !important;
 }
+
+.thumbs-wrapper{
+  margin: 20px 0 !important;
+}
+
+.thumbs-wrapper .thumbs {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+.carousel .slide{
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
