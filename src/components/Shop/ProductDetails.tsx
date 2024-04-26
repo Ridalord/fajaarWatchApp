@@ -15,6 +15,7 @@ import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProductreviewCard from "./ProductReviewCard";
+import RelatedProduct from "./RelatedProduct";
 
 
 
@@ -31,7 +32,7 @@ export default function ProductDetails() {
   const { cart, dispatch, REDUCER_ACTIONS } = useCart()
   const { dispatch: WishlistDispatch, REDUCER_ACTIONS: WishlistReducerActions, wishlist } = useWishlist()
   const [activeTab, setActiveTab] = useState<string>("descr-tab-pane");
-  
+  const [relatedProducts, setRelatedProducts] = useState<ProductType[] | null>([])
 
   const fetchProductImageUrls = (productId: string) => {
     const storage = getStorage();
@@ -79,6 +80,16 @@ export default function ProductDetails() {
     }
   }, [id, cart]);
 
+  useEffect(() => {
+    if (product) {
+      const relatedProductsArray: ProductType[] = products.filter((productItem) => productItem.category === product.category);
+      if (relatedProductsArray.length > 0) {
+        setRelatedProducts(relatedProductsArray);
+      }
+    }
+  }, [product, products]);
+
+
   const handleAddCount = () => {
     setCartCount(prev=>prev+1)
   }
@@ -111,6 +122,8 @@ export default function ProductDetails() {
   const toggleTab = (tab: string) => {
     setActiveTab(tab);
   };
+
+  // console.log(relatedProducts)
 
   return (
     <div>
@@ -180,117 +193,17 @@ export default function ProductDetails() {
                     <div className="tab-content" id="myTabContent">
                       <div className={`tab-pane fade ${activeTab === "descr-tab-pane" ? "show active" : ""}`} id="descr-tab-pane" role="tabpanel" aria-labelledby="descr-tab">
                         <div className="fz-product-details__descr">
-            <p>{ product.description}</p>
+                          <p>{ product.description}</p>
                         </div>
                       </div>
 
 
                       <div className={`tab-pane fade ${activeTab === "review-tab-pane" ? "show active" : ""}`} id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab">
                         <div className="fz-product-details__review">
-                          {/* <div className="review-overview">
-                            <div className="average-rating-area">
-                              <h3><span>4.3</span><span>/5</span></h3>
-                              <span className="rating-amount">24 ratings</span>
-                            </div>
-
-                            <div className="review-breakdown">
-                              <ul className="individual-star-breakdown">
-                                <li className="star">
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                </li>
-                                <li>
-                                  <div className="bar">
-                                    <div className="filled"></div>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div className="each-star-amount">320</div>
-                                </li>
-                              </ul>
-
-                              <ul className="individual-star-breakdown individual-star-breakdown-2">
-                                <li className="star">
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-light fa-star"></i>
-                                </li>
-                                <li>
-                                  <div className="bar">
-                                    <div className="filled"></div>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div className="each-star-amount">250</div>
-                                </li>
-                              </ul>
-
-                              <ul className="individual-star-breakdown individual-star-breakdown-3">
-                                <li className="star">
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-light fa-star"></i>
-                                  <i className="fa-light fa-star"></i>
-                                </li>
-                                <li>
-                                  <div className="bar">
-                                    <div className="filled"></div>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div className="each-star-amount">140</div>
-                                </li>
-                              </ul>
-
-                              <ul className="individual-star-breakdown individual-star-breakdown-4">
-                                <li className="star">
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-light fa-star"></i>
-                                  <i className="fa-light fa-star"></i>
-                                  <i className="fa-light fa-star"></i>
-                                </li>
-                                <li>
-                                  <div className="bar">
-                                    <div className="filled"></div>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div className="each-star-amount">83</div>
-                                </li>
-                              </ul>
-
-                              <ul className="individual-star-breakdown individual-star-breakdown-5">
-                                <li className="star">
-                                  <i className="fa-solid fa-sharp fa-star"></i>
-                                  <i className="fa-light fa-star"></i>
-                                  <i className="fa-light fa-star"></i>
-                                  <i className="fa-light fa-star"></i>
-                                  <i className="fa-light fa-star"></i>
-                                </li>
-                                <li>
-                                  <div className="bar">
-                                    <div className="filled"></div>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div className="each-star-amount">11</div>
-                                </li>
-                              </ul>
-                            </div>
-                          </div> */}
-
-
                           <div className="user-reviews">
                             <h4 className="reviews-title">Reviews of this product</h4>
                             <div className="row g-4">
-                {product.reviews.map((review)=> <ProductreviewCard review={review} key={review.id}/>)}
+                              {product.reviews.map((review)=> <ProductreviewCard review={review} key={review.id}/>)}
                             </div>
                           </div>
                         </div>
@@ -298,6 +211,17 @@ export default function ProductDetails() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="related-product-section">
+            <div className="container">
+              <h2 className="related-product__title">Related Products</h2>
+              <div className="row gy-sm-4 g-3">
+                {relatedProducts?.slice(0, 4).map((product) => (
+                  <RelatedProduct product={product} key={product.id} />
+                ))}
               </div>
             </div>
           </section>
