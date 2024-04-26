@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 
 type PropTypes = {
-  page: string
+  page: string,
+  productName?: string
 }
-export default function Breadcrumbs({ page }: PropTypes) {
+export default function Breadcrumbs({ page, productName }: PropTypes) {
   let breadcrumbHeader: string = '';
   let pageName: string = ''
 
@@ -11,6 +12,10 @@ export default function Breadcrumbs({ page }: PropTypes) {
     case "shop":
       breadcrumbHeader = "Shop Page";
       pageName = "Products"
+      break;
+    case "product":
+      breadcrumbHeader = "Product Details";
+      pageName = productName || ''
       break;
     default:
       breadcrumbHeader = "Default Header"; 
@@ -25,10 +30,20 @@ export default function Breadcrumbs({ page }: PropTypes) {
           <div className="col-12">
             <div className="breadcrumb-txt">
               <h1>{breadcrumbHeader}</h1>
-              <ul className="fz-inner-page-breadcrumb-nav">
-                <li><Link to="/">Home</Link></li>
-                <li className="current-page">{pageName}</li>
-              </ul>
+              {
+                page === "product"? 
+                <ul className="fz-inner-page-breadcrumb-nav">
+                  <li><Link to="/">Home</Link></li>
+                  <li><Link to="/shop">Shop</Link></li>
+                  <li className="current-page">{productName}</li>
+                </ul>
+                  :
+                <ul className="fz-inner-page-breadcrumb-nav">
+                  <li><Link to="/">Home</Link></li>
+                  <li className="current-page">{pageName}</li>
+                </ul>
+              }
+              
             </div>
           </div>
         </div>

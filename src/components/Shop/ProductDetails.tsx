@@ -11,6 +11,7 @@ import { getDownloadURL, getStorage, list, ref } from "firebase/storage";
 import { Loader } from "@mantine/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 
 
 interface ImageUrls {
@@ -105,23 +106,12 @@ export default function ProductDetails() {
   return (
     <div>
       {product ? (
+        <>
+          <Breadcrumbs page="product" productName={product.name} />
         <section className="fz-product-details">
           <div className="container">
             <div className="row align-items-start justify-content-center">
               <div className="col-lg-5 col-md-6 col-12 col-xxs-12">
-                {/* <div className="fz-product-details__img" id="fz-product-details__img-slider">
-                  {imageUrls[product.id]?.[0] ? <img src={imageUrls[product.id]?.[0] || "#"} alt={product.name} /> : <Loader color="#B8860B" size="lg" type="dots" />}
-                    {imageUrls[product.id]?.[0] ? <img src={imageUrls[product.id]?.[0] || "#"} alt={product.name} /> : <Loader color="#B8860B" size="lg" type="dots" />}
-                      {imageUrls[product.id]?.[0] ? <img src={imageUrls[product.id]?.[0] || "#"} alt={product.name} /> : <Loader color="#B8860B" size="lg" type="dots" />}
-                        {imageUrls[product.id]?.[0] ? <img src={imageUrls[product.id]?.[0] || "#"} alt={product.name} /> : <Loader color="#B8860B" size="lg" type="dots" />}
-                        </div>
-
-                        <div className="fz-product-details__img-nav">
-                          <img src="assets/images/product-det-1.jpg" alt="Product Image"/>
-                            <img src="assets/images/product-det-2.jpg" alt="Product Image"/>
-                              <img src="assets/images/product-det-3.jpg" alt="Product Image"/>
-                                <img src="assets/images/product-det-4.jpg" alt="Product Image"/>
-                                </div> */}
                 <Carousel interval={5000} transitionTime={500} showArrows={false} showIndicators={false} showStatus={false} emulateTouch={true}  className="fz-product-details__img">
                   {imageUrls[product.id]?.[0] ? <img src={imageUrls[product.id]?.[0] || "#"} alt={product.name} /> : <Loader color="#B8860B" size="lg" type="dots" />}
                   {imageUrls[product.id]?.[1] ? <img src={imageUrls[product.id]?.[1] || "#"} alt={product.name} /> : <Loader color="#B8860B" size="lg" type="dots" />}
@@ -413,7 +403,8 @@ export default function ProductDetails() {
                               </div>
                             </div>
                         </div>
-                      </section>
+          </section>
+        </>
       ) : (
         <p>Product not found</p>
       )}
