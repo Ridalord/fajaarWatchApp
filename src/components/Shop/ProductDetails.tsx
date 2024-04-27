@@ -214,12 +214,13 @@ export default function ProductDetails() {
               </div>
             </div>
           </section>
+          
 
           <section className="related-product-section">
             <div className="container">
               <h2 className="related-product__title">Related Products</h2>
               <div className="row gy-sm-4 g-3">
-                {relatedProducts?.slice(0, 4).map((product) => (
+                {relatedProducts?.sort(() => Math.random() - 0.5).slice(0, 4).map((product) => (
                   <RelatedProduct product={product} key={product.id} />
                 ))}
               </div>

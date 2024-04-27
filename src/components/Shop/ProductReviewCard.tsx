@@ -1,4 +1,5 @@
 import { Rating } from "@mui/material"
+import DefaulImage from "./user.png"
 
 type ReviewType = {
   id: string,
@@ -17,7 +18,7 @@ export default function ProductreviewCard({review}: PropTypes) {
       <div className="single-review">
         <div className="user">
           <div className="user-img">
-            <img src="assets/images/user-1.png" alt={review.name} />
+            <img src={DefaulImage} alt={review.name} />
           </div>
           <div className="user-info">
             <h6 className="user-name">{review.name}</h6>
