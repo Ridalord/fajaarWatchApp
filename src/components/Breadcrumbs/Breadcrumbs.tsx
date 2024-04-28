@@ -13,6 +13,10 @@ export default function Breadcrumbs({ page, productName }: PropTypes) {
       breadcrumbHeader = "Shop Page";
       pageName = "Products"
       break;
+    case "about":
+      breadcrumbHeader = "About Us";
+      pageName = "About"
+      break;
     case "product":
       breadcrumbHeader = "Product Details";
       pageName = productName || ''

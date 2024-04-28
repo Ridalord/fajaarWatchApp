@@ -15,6 +15,7 @@ import '@mantine/core/styles.css';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductDetails from "./components/Shop/ProductDetails"; // Assuming this is the correct import for the ProductDetails component
+import About from "./components/About/About";
 // import { ProductType } from "./components/context/ProductsProvider";
 
 function App() {
@@ -88,7 +89,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Shop />} />
-            <Route path="/shop/:id" element={<ProductDetails />} /> {/* Pass ProductDetails component directly */}
+            <Route path="/shop/:id" element={<ProductDetails />} /> 
+            <Route path="/about" element={<About />} /> 
           </Routes>
         </div>
         <Footer />

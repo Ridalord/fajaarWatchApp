@@ -51,7 +51,7 @@ export default function MobileNavWrapper({ showNavMobile, setShowNavMobile }: Pr
                       <Accordion.Header className={classes.accordionHeader}>PAGES</Accordion.Header>
                       <Accordion.Body className={classes.accordionBody}>
                         <ul className="fz-submenu">
-                          <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">ABOUT</Link></li>
+                          <li><Link to="/about" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">ABOUT</Link></li>
                           <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">FAQ</Link></li>
                           <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">CART</Link></li>
                           <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">ACCOUNT</Link></li>
