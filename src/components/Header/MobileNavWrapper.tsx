@@ -53,7 +53,7 @@ export default function MobileNavWrapper({ showNavMobile, setShowNavMobile }: Pr
                         <ul className="fz-submenu">
                           <li><Link to="/about" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">ABOUT</Link></li>
                           <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">FAQ</Link></li>
-                          <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">CART</Link></li>
+                          <li><Link to="/cart" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">CART</Link></li>
                           <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">ACCOUNT</Link></li>
                           <li><Link to="/" onClick={handleCloseNavMobile} className="fz-nav-link fz-submenu-nav-link">CHECKOUT</Link></li>
                         </ul>

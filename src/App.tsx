@@ -16,6 +16,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductDetails from "./components/Shop/ProductDetails"; // Assuming this is the correct import for the ProductDetails component
 import About from "./components/About/About";
+import Cart from "./components/Cart/Cart";
 // import { ProductType } from "./components/context/ProductsProvider";
 
 function App() {
@@ -66,9 +67,6 @@ function App() {
     };
   }, []);
 
-  // Not sure what you're trying to do here with product, so I commented it out
-  // const product: ProductType;
-
   return (
     <Router basename="fajaarWatchApp">
       <div className="App fz-7-body">
@@ -91,6 +89,7 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/shop/:id" element={<ProductDetails />} /> 
             <Route path="/about" element={<About />} /> 
+            <Route path="/cart" element={<Cart />} /> 
           </Routes>
         </div>
         <Footer />

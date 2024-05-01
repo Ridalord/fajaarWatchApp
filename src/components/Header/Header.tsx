@@ -118,7 +118,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
                     <ul className="fz-submenu">
                       <li><Link to={"/about"} className="fz-nav-link fz-submenu-nav-link">about</Link></li>
                       <li><a href="faq.html" className="fz-nav-link fz-submenu-nav-link">FAQ</a></li>
-                      <li><a href="cart.html" className="fz-nav-link fz-submenu-nav-link">cart</a></li>
+                      <li><Link to="/cart" className="fz-nav-link fz-submenu-nav-link">cart</Link></li>
                       <li><a href="account.html" className="fz-nav-link fz-submenu-nav-link">account</a></li>
                       <li><a href="checkout.html" className="fz-nav-link fz-submenu-nav-link">Checkout</a></li>
                     </ul>
