@@ -3,6 +3,7 @@ import CartModalItem from "./CartModalItem";
 import { CartItemType } from "../context/CartProvider";
 import { ReactElement } from "react";
 import useCart from "../hooks/useCart";
+import { Link } from "react-router-dom";
 
 type PropTypes = {
   showCart: boolean,
@@ -48,7 +49,7 @@ export default function CartModal({showCart, setShowCart}: PropTypes) {
           </table>
 
           <div className="cart-left-actions d-flex justify-content-end">
-            <a href="cart.html" className="fz-1-banner-btn update-cart-btn">View Full cart</a>
+            <Link to="/cart" className="fz-1-banner-btn update-cart-btn">View Full cart</Link>
           </div>
         </div>
       </div>
