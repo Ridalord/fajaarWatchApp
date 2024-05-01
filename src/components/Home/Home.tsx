@@ -8,10 +8,15 @@ import Deal from './DealOfTheDay/Deal';
 import Brands from './Brands/Brands';
 import EmailSignup from './EmailSignup/EmailSignup';
 import BlogPosts from './BlogPostSection/BlogPosts';
+import Preloader from '../Preloader/Preloader';
+import { useState } from 'react';
 
 export default function Home() {
+  const [load] = useState(true);
+
   return (
     <>
+      <Preloader load={load} />
       <Title title="Home Page"/>
       <Hero />
       <Category />

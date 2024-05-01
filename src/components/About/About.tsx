@@ -9,10 +9,15 @@ import Customer2 from "./customr-2.png"
 import Customer3 from "./customr-3.png"
 import Customer4 from "./customr-4.png"
 import Customer5 from "./customr-5.png"
+import Preloader from "../Preloader/Preloader";
+import { useState } from "react";
 
 export default function About() {
+  const [load] = useState(true);
+
   return (
     <>
+      <Preloader load={load} />
       <Breadcrumbs page="about" />
       <div className="fz-about-area">
         <div className="container">
