@@ -64,7 +64,7 @@ export default function MobileNavWrapper({ showNavMobile, setShowNavMobile }: Pr
                 <li className="fz-dropdown fz-nav-item">
                   <a role="button" className="fz-nav-link">BLOG</a>
                 </li>
-                <li className="fz-nav-item mean-last"><a href="contact.html" className="fz-nav-link">CONTACT</a></li>
+                <li className="fz-nav-item mean-last"><Link to="/contact" className="fz-nav-link">CONTACT</Link></li>
               </ul>
             </nav></div>
           </div>

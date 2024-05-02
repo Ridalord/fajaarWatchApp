@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ProductDetails from "./components/Shop/ProductDetails"; // Assuming this is the correct import for the ProductDetails component
 import About from "./components/About/About";
 import Cart from "./components/Cart/Cart";
+import Contact from "./components/Contact/Contact";
 // import { ProductType } from "./components/context/ProductsProvider";
 
 function App() {
@@ -90,6 +91,7 @@ function App() {
             <Route path="/shop/:id" element={<ProductDetails />} /> 
             <Route path="/about" element={<About />} /> 
             <Route path="/cart" element={<Cart />} /> 
+            <Route path="/contact" element={<Contact />} /> 
           </Routes>
         </div>
         <Footer />

@@ -126,7 +126,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
                   <li className="fz-dropdown fz-nav-item">
                     <a role="button" className="fz-nav-link">blog </a>
                   </li>
-                  <li className="fz-nav-item"><a href="contact.html" className="fz-nav-link">contact</a></li>
+                  <li className="fz-nav-item"><Link to="/contact" className="fz-nav-link">contact</Link></li>
                 </ul>
               </nav>
             </div>
