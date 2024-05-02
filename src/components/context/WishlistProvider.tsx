@@ -7,7 +7,8 @@ const initWishlistState: WishlistStateType = { wishlist: JSON.parse(localStorage
 
 const REDUCER_ACTION_TYPE = {
   ADD: "ADD",
-  REMOVE: "REMOVE"
+  REMOVE: "REMOVE",
+  TOCART: "TOCART"
 }
 
 export type ReducerActionType = typeof REDUCER_ACTION_TYPE
@@ -45,6 +46,10 @@ const reducer = (state: WishlistStateType, action: ReducerAction): WishlistState
 
       return { ...state, wishlist: [...filteredWishlist] }
 
+    }
+    case REDUCER_ACTION_TYPE.TOCART: {
+      localStorage.setItem('wishlist', JSON.stringify([]));
+      return {...state, wishlist: []}
     }
     default:
       throw new Error('Undefined reducer action type')

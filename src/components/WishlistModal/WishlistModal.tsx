@@ -3,7 +3,9 @@ import useWishlist from "../hooks/useWishlist"
 import WishlistModalItem from "./WishlistModalItem"
 import { CartItemType } from "../context/CartProvider"
 import { X } from "react-bootstrap-icons";
-import Button from "../Button/Button";
+// import Button from "../Button/Button";
+import useCart from "../hooks/useCart";
+import { Link } from "react-router-dom";
 
 
 type PropTypes = {
@@ -12,8 +14,14 @@ type PropTypes = {
 }
 
 export default function WishlistModal({showWishlist, setShowWishlist}: PropTypes) {
-  const { wishlist } = useWishlist()
+  const { wishlist, dispatch: wishlistDispatch, REDUCER_ACTIONS: wishlistReducerActions } = useWishlist()
+  const {dispatch, REDUCER_ACTIONS}= useCart()
   const onCloseWishlist = () => {
+    setShowWishlist(prev => !prev)
+  }
+  const handleGoToCart = () => {
+    wishlist.map((wishlistItem) => dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...wishlistItem } }))
+    wishlistDispatch({ type: wishlistReducerActions.TOCART })
     setShowWishlist(prev => !prev)
   }
   return (
@@ -51,8 +59,8 @@ export default function WishlistModal({showWishlist, setShowWishlist}: PropTypes
           </table>
 
           <div className="cart-left-actions d-flex justify-content-end">
-            {/* <a href="cart.html" className="fz-1-banner-btn update-cart-btn">Go to cart</a> */}
-            <Button text="Go to cart" link="cart.html" type="cart"/>
+            <Link to="/cart" onClick={handleGoToCart} className="fz-1-banner-btn update-cart-btn">Go to cart</Link>
+            {/* <Button text="Go to cart" link="cart.html" type="cart"/> */}
           </div>
         </div>
       </div>
