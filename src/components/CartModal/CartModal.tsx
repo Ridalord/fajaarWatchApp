@@ -49,7 +49,7 @@ export default function CartModal({showCart, setShowCart}: PropTypes) {
           </table>
 
           <div className="cart-left-actions d-flex justify-content-end">
-            <Link to="/cart" className="fz-1-banner-btn update-cart-btn">View Full cart</Link>
+            <Link to="/cart" className="fz-1-banner-btn update-cart-btn" onClick={handleCloseCart}>View Full cart</Link>
           </div>
         </div>
       </div>
