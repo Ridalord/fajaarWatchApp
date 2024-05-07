@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { db } from '../../config/firebase';
 import { addDoc, collection } from 'firebase/firestore';
+import SuccessModal from './SuccessModal';
 
 interface FormValues {
   firstName: string;
@@ -18,7 +19,8 @@ const ContactForm: React.FC = () => {
     phoneNumber: '',
     message: ''
   });
-  const[loading, setLoading]= useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [showSuccessModal,setShowSuccessModal] = useState<boolean>(false)
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,6 +35,7 @@ const ContactForm: React.FC = () => {
         message: ''
       });
       setLoading(prev => !prev)
+      setShowSuccessModal(prev => !prev)
     } catch (error) {
       console.error('Error submitting form data:', error);
     }
@@ -71,6 +74,7 @@ const ContactForm: React.FC = () => {
           <button disabled={loading} type="submit" className="fz-1-banner-btn fz-comment-form__btn">Send Message</button>
         </form>
       </div>
+      <SuccessModal setShowSuccessModal={setShowSuccessModal} showSuccessModal={showSuccessModal} />
     </div>
   );
 };
