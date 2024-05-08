@@ -83,9 +83,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
 
                 <select name="currency" id="top-header-currency-dropdown" className={classes.select}>
                   <option value="USD">USD</option>
-                  <option value="Taka">Taka</option>
-                  <option value="Euro">Euro</option>
-                  <option value="Rupee">Rupee</option>
+                  <option value="NGN">Naira</option>
                 </select>
 
                 <select name="language" id="top-header-language-dropdown" className={classes.select}>

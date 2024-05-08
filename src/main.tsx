@@ -9,6 +9,7 @@ import { WishlistProvider } from './components/context/WishlistProvider.tsx';
 import { CartProvider } from './components/context/CartProvider.tsx';
 import { BlogPostsProvider } from './components/context/BlogProvider.tsx';
 import {  MantineProvider } from '@mantine/core';
+import CurrencyProvider from './components/context/CurrencyProvider.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -16,8 +17,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ProductsProvider>
       <WishlistProvider>
         <CartProvider>
-          <BlogPostsProvider>
-            <App />
+            <BlogPostsProvider>
+              <CurrencyProvider>
+                <App />
+              </CurrencyProvider>
           </BlogPostsProvider>
         </CartProvider>
       </WishlistProvider>
