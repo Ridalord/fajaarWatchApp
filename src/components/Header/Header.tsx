@@ -8,6 +8,7 @@ import useCart from '../hooks/useCart';
 import useWishlist from '../hooks/useWishlist';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useCurrency from '../hooks/useCurrency';
 
 type PropTypes = {
   setShowNavMobile: React.Dispatch<React.SetStateAction<boolean>>,
@@ -20,6 +21,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
   const { totalCartItems } = useCart()
   const { totalWishlistItem } = useWishlist()
   const [fixed, setFixed] = useState(false)
+  const {toggleCurrency, currency}= useCurrency()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,7 +83,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
                   <a href="#"><FontAwesomeIcon icon={faYoutube} /></a>
                 </div>
 
-                <select name="currency" id="top-header-currency-dropdown" className={classes.select}>
+                <select name="currency" id="top-header-currency-dropdown" className={classes.select} onChange={(e) => toggleCurrency(e.target.value)} value={currency}>
                   <option value="USD">USD</option>
                   <option value="NGN">Naira</option>
                 </select>
