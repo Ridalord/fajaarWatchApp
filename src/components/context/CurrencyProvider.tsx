@@ -1,12 +1,12 @@
 import { ReactElement, createContext, useState } from "react";
 
 type ChildrenType = { children?: ReactElement | ReactElement[] };
-type UseCurrencyContext = {
+export type UseCurrencyContext = {
   currency: string,
   toggleCurrency: (newCurrency: string) => void
 }
 
-const CurrencyContext = createContext<UseCurrencyContext>({
+ export const CurrencyContext = createContext<UseCurrencyContext>({
   currency: "USD",
   toggleCurrency: () => { }
 });
