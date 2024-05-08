@@ -1,5 +1,9 @@
+import { Clock, GeoAlt, Phone} from "react-bootstrap-icons";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import ContactForm from "./ContactForm";
+import { faFacebook, faInstagram, faXTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 export default function Contact() {
   return (
@@ -14,20 +18,19 @@ export default function Contact() {
             <h3 className="fz-inner-contact-details__title">Get In Touch</h3>
             <ul>
               <li className="fz-single-contact-info">
-                <i className="fa-light fa-location-dot"></i>
-                <span className="contact-address">989 Bel Meadow Drive Los Angeles, CA 90017</span>
+                <GeoAlt/>
+                <span className="contact-address">12 Allen Avenue Ikeja, Lagos 100281</span>
               </li>
 
               <li className="fz-single-contact-info">
-                <i className="fa-light fa-phone"></i>
+                <Phone/>
                 <div className="contact-numbers">
                   <span><a href="tel:+2348132246772">(+234) 813-224-6772</a></span>
-                  {/* <span><a href="tel:470-142-2412">(+1) 470-142-2412</a></span> */}
                 </div>
               </li>
 
               <li className="fz-single-contact-info">
-                <i className="fa-light fa-clock"></i>
+                <Clock/>
                 <div className="contact-numbers">
                   <span className="store-time__title">Store Hours:</span>
                   <span className="store-time__hours">Mon - Sat : 8:00am - 5:00pm</span>
@@ -37,11 +40,10 @@ export default function Contact() {
               <li className="contact-socials">
                 <h6 className="contact-socials__title">Follow Us:</h6>
                 <ul>
-                  <li><a href="#"><i className="fa-brands fa-facebook-f"></i></a></li>
-                  <li><a href="#"><i className="fa-brands fa-twitter"></i></a></li>
-                  <li><a href="#"><i className="fa-brands fa-instagram"></i></a></li>
-                  <li><a href="#"><i className="fa-brands fa-youtube"></i></a></li>
-                  <li><a href="#"><i className="fa-brands fa-tiktok"></i></a></li>
+                  <li><a href="#"><FontAwesomeIcon icon={faFacebook}/></a></li>
+                  <li><a href="#"><FontAwesomeIcon icon={faXTwitter}/></a></li>
+                  <li><a href="#"><FontAwesomeIcon icon={faInstagram}/> </a></li>
+                  <li><a href="#"><FontAwesomeIcon icon={faYoutube}/></a></li>
                 </ul>
               </li>
             </ul>
