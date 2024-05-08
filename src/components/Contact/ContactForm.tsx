@@ -2,6 +2,9 @@ import React, { FormEvent, useState } from 'react';
 import { db } from '../../config/firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import SuccessModal from './SuccessModal';
+import emailjs from "emailjs-com"
+import { Backdrop, CircularProgress } from '@mui/material';
+
 
 interface FormValues {
   firstName: string;
@@ -20,22 +23,39 @@ const ContactForm: React.FC = () => {
     message: ''
   });
   const [loading, setLoading] = useState<boolean>(false)
-  const [showSuccessModal,setShowSuccessModal] = useState<boolean>(false)
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
+  const serviceID = 'service_000i3kc';
+  const templateID = 'template_xzfkb9y';
+  const userID = 'xfEc85Hn1dbsKZL_6';
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(prev=>!prev)
     try {
       await addDoc(collection(db, 'Messages'), formData);
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        message: ''
-      });
-      setLoading(prev => !prev)
-      setShowSuccessModal(prev => !prev)
+      const emailParams = {
+        from_name: formData.firstName + ' ' + formData.lastName,
+        reply_to: formData.email,
+        message: formData.message,
+      }
+      emailjs.send(serviceID, templateID, emailParams, userID).then(
+        (response) => {
+          console.log('Email sent successfully:', response);
+          setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            phoneNumber: '',
+            message: ''
+          });
+          setLoading(prev => !prev)
+          setShowSuccessModal(prev => !prev)
+        },
+        (error) => {
+          console.error('Email delivery failed:', error);
+        }
+      );
+      
     } catch (error) {
       console.error('Error submitting form data:', error);
     }
@@ -75,6 +95,10 @@ const ContactForm: React.FC = () => {
         </form>
       </div>
       <SuccessModal setShowSuccessModal={setShowSuccessModal} showSuccessModal={showSuccessModal} />
+      <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };
