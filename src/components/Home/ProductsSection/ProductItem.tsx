@@ -9,6 +9,7 @@ import { getDownloadURL, getStorage, list, ref } from "@firebase/storage";
 import { Loader } from '@mantine/core';
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import useCurrency from "../../hooks/useCurrency";
 
 
 type PropTypes = {
@@ -22,6 +23,7 @@ export default function ProductItem({ product, type }: PropTypes) {
   const { products } = useProducts()
   const { dispatch, REDUCER_ACTIONS} = useCart()
   const { dispatch: wishlistDispatch, REDUCER_ACTIONS: WISHLIST_REDUCER_ACTION } = useWishlist()
+  const {currency, rate} = useCurrency()
 
   const fetchProductImageUrls = (productId: string) => {
     const storage = getStorage();
@@ -74,7 +76,7 @@ export default function ProductItem({ product, type }: PropTypes) {
           <h4 className="fz-7-product-title">
             <Link to={`/shop/${product.id}`}>{product.name}</Link>
           </h4>
-          <span className="fz-7-product-price">${product.price.toFixed(2)}</span>
+          <span className="fz-7-product-price">{currency === 'USD' ? '$' : '₦'}{(product.price * rate).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span>
           <div className="fz-7-product-actions">
             <button type="button" className="add-to-cart-btn" onClick={onAddToCartClick}>Add To Cart</button>
             <div className="right">

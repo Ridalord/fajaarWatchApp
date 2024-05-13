@@ -4,6 +4,7 @@ import useWishlist from "../hooks/useWishlist"
 import { X } from "react-bootstrap-icons";
 import { getStorage, ref, getDownloadURL, list } from "firebase/storage";
 import { useEffect, useState } from "react";
+import useCurrency from "../hooks/useCurrency";
 
 type PropTypes = {
   product: CartItemType,
@@ -15,7 +16,8 @@ interface ImageUrls {
 
 export default function WishlistModalItem({ product }: PropTypes) {
   const { dispatch, REDUCER_ACTIONS } = useCart()
-  const {dispatch : wishlistDispatch, REDUCER_ACTIONS: WISHLIST_REDUCER_ACTION} = useWishlist()
+  const { dispatch: wishlistDispatch, REDUCER_ACTIONS: WISHLIST_REDUCER_ACTION } = useWishlist()
+  const { currency, rate } = useCurrency()
   const onAddToCart = () => {
     dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product } })
     wishlistDispatch({ type: WISHLIST_REDUCER_ACTION.REMOVE, payload: { ...product } })
@@ -64,7 +66,7 @@ export default function WishlistModalItem({ product }: PropTypes) {
           </div>
         </div>
       </td>
-      <td>${product.price.toFixed(2)}</td>
+      <td>{currency === 'USD' ? '$' : '₦'}{(product.price * rate).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
       <td>
         <div className="fz-wishlist-action">
           <button className="fz-add-to-cart-btn fz-1-banner-btn fz-wishlist-action-btn" onClick={onAddToCart}>Add to cart</button>

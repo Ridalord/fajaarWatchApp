@@ -16,6 +16,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProductreviewCard from "./ProductReviewCard";
 import RelatedProduct from "./RelatedProduct";
+import useCurrency from "../hooks/useCurrency";
 
 
 
@@ -33,6 +34,7 @@ export default function ProductDetails() {
   const { dispatch: WishlistDispatch, REDUCER_ACTIONS: WishlistReducerActions, wishlist } = useWishlist()
   const [activeTab, setActiveTab] = useState<string>("descr-tab-pane");
   const [relatedProducts, setRelatedProducts] = useState<ProductType[] | null>([])
+  const {currency, rate} = useCurrency()
 
   const fetchProductImageUrls = (productId: string) => {
     const storage = getStorage();
@@ -145,7 +147,7 @@ export default function ProductDetails() {
                   <div className="fz-product-details__txt">
                     <h2 className="fz-product-details__title">{product.name}</h2>
                     <div className="fz-product-details__price-rating">
-                      <span className="price">${product.price}</span>
+                      <span className="price">{currency === 'USD' ? '$' : '₦'}{(product.price * rate).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span>
                       <div className="rating">
                         <Rating name="half-rating-read" defaultValue={Number(product.rating)} precision={0.1} readOnly size="medium" />
                       </div>

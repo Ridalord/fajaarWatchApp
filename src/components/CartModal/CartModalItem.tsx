@@ -3,6 +3,7 @@ import useCart from "../hooks/useCart";
 import { CartItemType } from "../context/CartProvider";
 import { getStorage, ref, getDownloadURL, list } from "firebase/storage";
 import { useEffect, useState } from "react";
+import useCurrency from "../hooks/useCurrency";
 
 
 
@@ -15,6 +16,7 @@ interface ImageUrls {
 }
 export default function CartModalItem({product}:PropTypes) {
   const { dispatch, REDUCER_ACTIONS } = useCart()
+  const { currency, rate } = useCurrency()
   const onAddQuantity = () => {
     dispatch({
       type: REDUCER_ACTIONS.QUANTITY,
@@ -78,7 +80,7 @@ export default function CartModalItem({product}:PropTypes) {
           </div>
         </div>
       </td>
-      <td>${product.price}</td>
+      <td>{currency === 'USD' ? '$' : '₦'}{(product.price * rate).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
       <td>
         <div className="cart-product__quantity">
           <div className="cart-product__quantity-btns">
@@ -88,7 +90,8 @@ export default function CartModalItem({product}:PropTypes) {
           <input type="number" name="product-quantity-input" className="cart-product-quantity-input" readOnly min="0" value={product.quantity} />
         </div>
       </td>
-      <td>${product.quantity * product.price}</td>
+
+      <td>{currency === 'USD' ? '$' : '₦'}{(product.quantity * product.price * rate).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
       <td>
         <button className="item-remove-btn" onClick={onRemoveProduct}>
           <X />

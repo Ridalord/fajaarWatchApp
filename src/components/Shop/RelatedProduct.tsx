@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { Bag } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
+import useCurrency from "../hooks/useCurrency";
 
 
 
@@ -19,7 +20,8 @@ interface ImageUrls {
 }
 
 export default function RelatedProduct({ product }: PropTypes) {
-  const {products} =useProducts()
+  const { products } = useProducts()
+  const{currency, rate} = useCurrency()
   const fetchProductImageUrls = (productId: string) => {
     const storage = getStorage();
     const productRef = ref(storage, `Products/${productId}`);
@@ -72,7 +74,7 @@ export default function RelatedProduct({ product }: PropTypes) {
           <Link to={`/shop/${product.id}`} className="fz-single-product__title">{product.name}</Link>
           <div className="fz-single-product__price-rating">
             <p className="fz-single-product__price">
-              <span className="current-price">${product.price}</span>
+              <span className="current-price">{currency === 'USD' ? '$' : '₦'}{(product.price * rate).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span>
             </p>
           </div>
         </div>

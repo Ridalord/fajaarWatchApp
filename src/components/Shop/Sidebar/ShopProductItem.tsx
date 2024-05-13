@@ -11,6 +11,7 @@ import Rating from '@mui/material/Rating';
 import { Loader } from "@mantine/core"
 import { toast } from "react-toastify"
 import { Link } from "react-router-dom"
+import useCurrency from "../../hooks/useCurrency"
 
 
 type PropTypes = {
@@ -25,6 +26,7 @@ export default function ShopProductItem({ product }: PropTypes) {
   const { products } = useProducts()
   const { dispatch, REDUCER_ACTIONS } = useCart()
   const { dispatch: wishlistDispatch, REDUCER_ACTIONS: WISHLIST_REDUCER_ACTION } = useWishlist()
+  const {currency, rate} = useCurrency()
 
   const fetchProductImageUrls = (productId: string) => {
     const storage = getStorage();
@@ -90,7 +92,7 @@ export default function ShopProductItem({ product }: PropTypes) {
             <Link to={`/shop/${product.id}`} className="fz-single-product__title">{product.name }</Link>
           <div className="fz-single-product__price-rating">
             <p className="fz-single-product__price">
-              <span className="current-price">${product.price.toFixed(2)}</span>
+              <span className="current-price">{currency === 'USD' ? '$' : '₦'}{(product.price * rate).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</span>
             </p>
 
             <div className="rating list-view-text">
