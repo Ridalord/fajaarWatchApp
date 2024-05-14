@@ -7,11 +7,11 @@ export type UseCurrencyContext = {
   toggleCurrency: (newCurrency: string) => void
 }
 
- export const CurrencyContext = createContext<UseCurrencyContext>({
-   currency: "USD",
-   rate: 1,
-    toggleCurrency: () => { }
-  });
+export const CurrencyContext = createContext<UseCurrencyContext>({
+  currency: "USD",
+  rate: 1,
+  toggleCurrency: () => { }
+});
 
 export default function CurrencyProvider({ children }: ChildrenType): ReactElement {
   const [currency, setCurrency] = useState<string>('USD');
