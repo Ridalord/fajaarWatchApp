@@ -10,6 +10,7 @@ import { CartProvider } from './components/context/CartProvider.tsx';
 import { BlogPostsProvider } from './components/context/BlogProvider.tsx';
 import {  MantineProvider } from '@mantine/core';
 import CurrencyProvider from './components/context/CurrencyProvider.tsx';
+import { AuthProvider } from './components/context/AuthProvider.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -19,7 +20,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <CartProvider>
             <BlogPostsProvider>
               <CurrencyProvider>
-                <App />
+                <AuthProvider>
+                  <App />
+                </AuthProvider>
               </CurrencyProvider>
           </BlogPostsProvider>
         </CartProvider>
