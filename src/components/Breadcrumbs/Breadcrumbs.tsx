@@ -29,6 +29,10 @@ export default function Breadcrumbs({ page, productName }: PropTypes) {
       breadcrumbHeader = "Contact Page";
       pageName = 'Contact'
       break;
+    case "account":
+      breadcrumbHeader = "My Account";
+      pageName = 'My Account'
+      break;
     default:
       breadcrumbHeader = "Default Header"; 
       pageName = "Default Name"

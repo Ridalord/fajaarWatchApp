@@ -18,6 +18,7 @@ import ProductDetails from "./components/Shop/ProductDetails"; // Assuming this 
 import About from "./components/About/About";
 import Cart from "./components/Cart/Cart";
 import Contact from "./components/Contact/Contact";
+import Account from "./components/Account/Account";
 // import { ProductType } from "./components/context/ProductsProvider";
 
 function App() {
@@ -92,6 +93,7 @@ function App() {
             <Route path="/about" element={<About />} /> 
             <Route path="/cart" element={<Cart />} /> 
             <Route path="/contact" element={<Contact />} /> 
+            <Route path="/account" element={<Account />} /> 
           </Routes>
         </div>
         <Footer />
