@@ -1,7 +1,7 @@
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { CartItemType } from "./CartProvider"
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-import { db } from "../../config/firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "../../config/firebase";
 import { ReactElement, createContext, useEffect, useMemo, useReducer } from "react";
 
 
@@ -62,8 +62,6 @@ export type ReducerAction = {
   payload?: SignupCredType | UpdateUserPayload,
 }
 
-const auth = getAuth();
-
 const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType => {
   switch (action.type) {
     case REDUCER_ACTION_TYPE.SIGNUP: {
@@ -74,7 +72,7 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
       let loggedIn: boolean = false
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          console.log(userCredential.user);
+          // console.log(userCredential.user);
           setDoc(doc(db, "Users", userCredential.user.uid), {
             id: userCredential.user.uid,
             firstName: firstName,
@@ -86,12 +84,13 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
             wishlist: JSON.parse(localStorage.getItem("wishlist")!) || []
           })
           console.log("User data updated")
-          loggedIn = !state.isLoggedIn
+          loggedIn = true
         })
         .catch((error) => {
           throw new Error(error.message);
         });
-      return {...state, isLoggedIn: loggedIn}
+      console.log(loggedIn)
+      return {...state, isLoggedIn: loggedIn, currentUser: {...state.currentUser, firstName: firstName!, lastName: lastName!, email: email!, } }
     }
     case REDUCER_ACTION_TYPE.LOGIN: {
       if (!action.payload) {
@@ -101,7 +100,7 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
       let loggedIn: boolean = false
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-          loggedIn = !state.isLoggedIn
+          loggedIn = true
         }).catch((error) => {
           throw new Error(error)
         })
@@ -111,7 +110,7 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
       let loggedIn: boolean = false
       signOut(auth)
         .then(() => {
-          loggedIn = !state.isLoggedIn
+          loggedIn = false
         })
       return{...state,  isLoggedIn: loggedIn}
     }
@@ -132,18 +131,24 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
       return { ...state, currentUser: updatedUser };
     }
     case REDUCER_ACTION_TYPE.LOAD_USER: {
+      let updatedState = { ...state }; // Create a copy of the current state
+
       onAuthStateChanged(auth, async (user) => {
         if (user) {
+          // console.log('User Logged in');
           const userDoc = doc(db, "Users", user.uid);
           const docSnapshot = await getDoc(userDoc);
           if (docSnapshot.exists()) {
             const userData = docSnapshot.data() as UserType;
-            return { ...state, currentUser: userData };
+            // console.log(userData);
+            updatedState = { ...state, currentUser: userData, isLoggedIn: true }; // Update the local copy of state with the fetched user data
+            localStorage.setItem('updatedState', JSON.stringify(updatedState))
           }
         }
-        return state;
       });
-      return state;
+
+      // console.log(JSON.parse(localStorage.getItem("updatedState")!)); // Log the updated state
+      return JSON.parse(localStorage.getItem("updatedState")!); // Return the updated state
     }
     default:
       throw new Error('Undefined reducer action type')
@@ -159,6 +164,7 @@ const useAuthContext = (initAuthContext: AuthStateType) => {
   const REDUCER_ACTIONS = useMemo(() => {
     return REDUCER_ACTION_TYPE
   }, [])
+  // console.log(state.currentUser)
 
   return {dispatch, REDUCER_ACTIONS, currentUser: state.currentUser, isLoggedIn: state.isLoggedIn}
 }
