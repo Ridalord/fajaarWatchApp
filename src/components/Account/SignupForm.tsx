@@ -2,13 +2,15 @@ import { useState } from 'react';
 import useAuth from '../hooks/useAuth';
 
 export default function SignupForm() {
-  const {dispatch, REDUCER_ACTIONS}= useAuth()
+  const {dispatch, REDUCER_ACTIONS, currentUser, isLoggedIn}= useAuth()
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     password: ''
   });
+
+  console.log(isLoggedIn,currentUser)
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -32,6 +34,10 @@ export default function SignupForm() {
     })
   };
 
+  const handleLogOut = () => {
+    dispatch({type:REDUCER_ACTIONS.LOGOUT})
+  }
+
   // console.log(currentUser, isLoggedIn)
 
   return (
@@ -45,6 +51,7 @@ export default function SignupForm() {
 
         <button type="submit" className="fz-1-banner-btn single-form-btn">Register</button>
       </form>
+      <button type="submit" onClick={handleLogOut} className="fz-1-banner-btn single-form-btn">Logout</button>
     </div>
   )
 }

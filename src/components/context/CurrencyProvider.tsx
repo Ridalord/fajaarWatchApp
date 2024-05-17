@@ -33,12 +33,18 @@ export default function CurrencyProvider({ children }: ChildrenType): ReactEleme
   useEffect(() => {
     if (currency === 'NGN') {
       fetch(BASE_URL)
-        .then(res => res.json())
-        .then(data => setRate(data.USD_NGN)) 
+        .then((res) => res.json()) 
+        .then((data) => {
+          setRate(data.USD_NGN);
+          // console.log(data.USD_NGN);
+        })
+        .catch((error) => {
+          throw new Error(error);
+        });
     } else {
-      setRate(1)
+      setRate(1);
     }
-  },[currency])
+  }, [currency]);
 
   return (
     <CurrencyContext.Provider value={contextValue}>

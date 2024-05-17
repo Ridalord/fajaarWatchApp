@@ -2,7 +2,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { CartItemType } from "./CartProvider"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../config/firebase";
-import { ReactElement, createContext, useEffect, useMemo, useReducer } from "react";
+import { ReactElement, createContext, useEffect, useMemo, useReducer, useState } from "react";
 
 
 export type UserType = {
@@ -90,7 +90,7 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
           throw new Error(error.message);
         });
       console.log(loggedIn)
-      return {...state, isLoggedIn: loggedIn, currentUser: {...state.currentUser, firstName: firstName!, lastName: lastName!, email: email!, } }
+      return {...state, isLoggedIn: !loggedIn, currentUser: {...state.currentUser, firstName: firstName!, lastName: lastName!, email: email!, } }
     }
     case REDUCER_ACTION_TYPE.LOGIN: {
       if (!action.payload) {
@@ -112,7 +112,18 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
         .then(() => {
           loggedIn = false
         })
-      return{...state,  isLoggedIn: loggedIn}
+      return {
+        ...state, isLoggedIn: loggedIn, currentUser: {
+          id: '',
+          firstName: '',
+          address: '',
+          cart: JSON.parse(localStorage.getItem("cart")!) || [],
+          email: '',
+          lastName: '',
+          phoneNumber: '',
+          wishlist: JSON.parse(localStorage.getItem("wishlist")!) || []
+        }
+      }
     }
     case REDUCER_ACTION_TYPE.UPDATE_USER: {
       if (!action.payload) {
@@ -144,6 +155,21 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
             updatedState = { ...state, currentUser: userData, isLoggedIn: true }; // Update the local copy of state with the fetched user data
             localStorage.setItem('updatedState', JSON.stringify(updatedState))
           }
+        } else {
+          updatedState = {
+            ...state, currentUser: {
+              id: '',
+              firstName: '',
+              address: '',
+              cart: JSON.parse(localStorage.getItem("cart")!) || [],
+              email: '',
+              lastName: '',
+              phoneNumber: '',
+              wishlist: JSON.parse(localStorage.getItem("wishlist")!) || []
+            },
+            isLoggedIn: false,
+          }
+          localStorage.setItem('updatedState', JSON.stringify(updatedState))
         }
       });
 
@@ -156,17 +182,40 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
 }
 
 const useAuthContext = (initAuthContext: AuthStateType) => {
-  const [state, dispatch] = useReducer(reducer, initAuthContext)
+  const [authState, setAuthState] = useState<AuthStateType>(initAuthContext);
+
   useEffect(() => {
-    dispatch({ type: REDUCER_ACTION_TYPE.LOAD_USER })
-  }, [])
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const userDoc = doc(db, "Users", user.uid);
+        const docSnapshot = await getDoc(userDoc);
+        if (docSnapshot.exists()) {
+          const userData = docSnapshot.data() as UserType;
+          const updatedState = {
+            ...authState,
+            currentUser: userData,
+            isLoggedIn: true
+          };
+          setAuthState(updatedState);
+          dispatch({ type: REDUCER_ACTION_TYPE.LOAD_USER});
+        }
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  // Then, pass authState as the initial state to useReducer
+  const [state, dispatch] = useReducer(reducer, authState);
+
   
   const REDUCER_ACTIONS = useMemo(() => {
     return REDUCER_ACTION_TYPE
   }, [])
-  // console.log(state.currentUser)
 
-  return {dispatch, REDUCER_ACTIONS, currentUser: state.currentUser, isLoggedIn: state.isLoggedIn}
+  return {dispatch, REDUCER_ACTIONS, currentUser: state.currentUser!, isLoggedIn: state.isLoggedIn}
 }
 
 export type UseAuthContextType = ReturnType<typeof useAuthContext>
