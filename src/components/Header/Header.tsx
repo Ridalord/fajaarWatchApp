@@ -119,7 +119,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
                       <li><Link to={"/about"} className="fz-nav-link fz-submenu-nav-link">about</Link></li>
                       <li><a href="faq.html" className="fz-nav-link fz-submenu-nav-link">FAQ</a></li>
                       <li><Link to="/cart" className="fz-nav-link fz-submenu-nav-link">cart</Link></li>
-                      <li><a href="account.html" className="fz-nav-link fz-submenu-nav-link">account</a></li>
+                      <li><Link to="/account" className="fz-nav-link fz-submenu-nav-link">account</Link></li>
                       <li><a href="checkout.html" className="fz-nav-link fz-submenu-nav-link">Checkout</a></li>
                     </ul>
                   </li>
@@ -133,9 +133,9 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
 
             <div className="col-lg-2 col-md-6 col-9">
               <div className="fz-logo-container text-lg-center text-start ms-0 ms-lg-auto">
-                <a href="index.html">
+                <Link to={"/"}>
                   <img src={Logo7dark} alt="logo" className="fz-logo" />
-                </a>
+                </Link>
               </div>
             </div>
 

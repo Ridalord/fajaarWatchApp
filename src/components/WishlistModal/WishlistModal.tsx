@@ -32,7 +32,7 @@ export default function WishlistModal({showWishlist, setShowWishlist}: PropTypes
           <button className="cart-area-modal-close-btn" onClick={onCloseWishlist}><X/></button>
         </div>
 
-        <div className="cart__body">
+        <div className="cart__body table-responsive mobile-wishlist">
           <table>
 
             <thead>

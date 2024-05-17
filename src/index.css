@@ -25784,6 +25784,16 @@ input[type=number].cart-product-quantity-input {
   .fz-checkout-sidebar .cart-checkout-area {
     margin-bottom: 0;
   }
+  .cart-area-modal{
+    max-width: 90% !important;
+    width: 90% !important;
+    /* overflow-x: scroll; */
+    left: 0;
+    translate: 0 -50%;
+  }
+  .mobile-wishlist{
+    width: 70%;
+  }
 }
 
 @media screen and (max-width: 479px) {

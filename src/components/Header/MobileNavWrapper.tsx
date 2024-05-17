@@ -1,13 +1,5 @@
 import { faFacebookF, faTwitter, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faXmarkCircle} from '@fortawesome/free-regular-svg-icons';
-// import Accordion, { AccordionSlots } from '@mui/material/Accordion';
-// import AccordionSummary from '@mui/material/AccordionSummary';
-// import AccordionDetails from '@mui/material/AccordionDetails';
-// import Typography from '@mui/material/Typography';
-// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// import Fade from '@mui/material/Fade';
-// import { useState } from 'react';
 import { Search, Bag, Heart, X} from "react-bootstrap-icons";
 import classes from "./MobileNavWrapper.module.css"
 import Accordion from 'react-bootstrap/Accordion';
@@ -19,9 +11,10 @@ import { Link } from 'react-router-dom';
 type PropTypes = {
   showNavMobile: boolean
   setShowNavMobile: React.Dispatch<React.SetStateAction<boolean>>
+  setShowWishlist: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function MobileNavWrapper({ showNavMobile, setShowNavMobile }: PropTypes) {
+export default function MobileNavWrapper({ showNavMobile, setShowNavMobile, setShowWishlist }: PropTypes) {
   // const [expanded, setExpanded] = useState(false);
 
   const handleToggleNavMobile = (event: { preventDefault: () => void; }) => {
@@ -31,6 +24,12 @@ export default function MobileNavWrapper({ showNavMobile, setShowNavMobile }: Pr
   const handleCloseNavMobile = () => {
     setShowNavMobile(false);
   };
+  const handleWishlistClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault(); 
+    setShowWishlist(prev => !prev);
+    setShowNavMobile((prevExpanded) => !prevExpanded);
+  }
+
   return (
     <div className={`fz-offcanvas-main-nav-wrapper fz-7-body ${showNavMobile? 'open' : null}`}>
       <button className="fz-button-close" onClick={handleToggleNavMobile}><X/> </button>
@@ -80,9 +79,9 @@ export default function MobileNavWrapper({ showNavMobile, setShowNavMobile }: Pr
               </form>
             </div>
             <div className="fz-offcanvas-main-actions mb-15">
-              <a href="cart.html"><span className={`fz-off-actions-icon ${classes.circledIcon}`}><Bag/>
-              </span> <span className="fz-off-actions-text"><span>View Cart</span><span>View Cart</span></span></a>
-              <a href="#"> <span className={classes.circledIcon}><Heart /></span> <span className="fz-off-actions-text"><span>View
+              <Link to="/cart"><span className={`fz-off-actions-icon ${classes.circledIcon}`}><Bag/>
+              </span> <span className="fz-off-actions-text"><span>View Cart</span><span>View Cart</span></span></Link>
+              <a href="#" onClick={handleWishlistClick}> <span className={classes.circledIcon}><Heart /></span> <span className="fz-off-actions-text"><span>View
                 Wishlist</span><span>View Wishlist</span></span></a>
             </div>
 

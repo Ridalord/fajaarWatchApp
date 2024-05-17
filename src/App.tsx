@@ -83,6 +83,7 @@ function App() {
           <MobileNavWrapper
             showNavMobile={showNavMobile}
             setShowNavMobile={setShowNavMobile}
+            setShowWishlist={setShowWishlist}
           />
         ) : null}
         <div className="main">
