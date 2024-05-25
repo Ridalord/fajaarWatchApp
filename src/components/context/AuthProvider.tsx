@@ -3,6 +3,8 @@ import { CartItemType } from "./CartProvider"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../config/firebase";
 import { ReactElement, createContext, useEffect, useMemo, useReducer, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { useHistory } from 'react-router-dom';
 
 
 export type UserType = {
@@ -72,7 +74,6 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
       let loggedIn: boolean = false
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          // console.log(userCredential.user);
           setDoc(doc(db, "Users", userCredential.user.uid), {
             id: userCredential.user.uid,
             firstName: firstName,
@@ -85,12 +86,14 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
           })
           console.log("User data updated")
           loggedIn = true
+          // const navigate = useNavigate();
+          // navigate("/")
         })
         .catch((error) => {
           throw new Error(error.message);
         });
       console.log(loggedIn)
-      return {...state, isLoggedIn: !loggedIn, currentUser: {...state.currentUser, firstName: firstName!, lastName: lastName!, email: email!, } }
+      return { ...state, isLoggedIn: !loggedIn, currentUser: { ...state.currentUser, firstName: firstName!, lastName: lastName!, email: email!, } }
     }
     case REDUCER_ACTION_TYPE.LOGIN: {
       if (!action.payload) {

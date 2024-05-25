@@ -35,3 +35,9 @@
   border-radius: 10px;
   /* Adjust the border radius as needed */
 }
+
+.accountAccordion{
+  position: absolute;
+  display: flex !important;
+  flex-direction: row;
+}

@@ -1,7 +1,9 @@
 import useCart from "../hooks/useCart";
+import useCurrency from "../hooks/useCurrency";
 
 export default function Billing() {
   const { cart } = useCart();
+  const {currency, rate} = useCurrency()
 
   // Calculate subtotal
   const subtotal = cart.reduce((previousPrice, cartItem) => {
@@ -9,7 +11,7 @@ export default function Billing() {
   }, 0);
 
   // Calculate total
-  const total = subtotal + 50; // Assuming shipping cost is $50
+  const total = (subtotal + 50)*rate; // Assuming shipping cost is $50
 
   return (
     <div className="cart-checkout-area">
@@ -19,15 +21,15 @@ export default function Billing() {
         <li>
           <span className="checkout-summary__key">Subtotal</span>
           <span className="checkout-summary__value">
-            <span>$</span>
-            {subtotal.toFixed(2)}
+            <span>{currency === 'USD' ? '$' : '₦'}</span>
+            {(subtotal * rate).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
           </span>
         </li>
 
         <li>
           <span className="checkout-summary__key">Shipping</span>
           <span className="checkout-summary__value">
-            <span>$</span>50.00
+            <span>{currency === 'USD' ? '$' : '₦'}</span>{(50.00 * rate).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
           </span>
         </li>
 
@@ -40,8 +42,8 @@ export default function Billing() {
         <li className="cart-checkout-total">
           <span className="checkout-summary__key">Total</span>
           <span className="checkout-summary__value">
-            <span>$</span>
-            {total.toFixed(2)}
+            <span>{currency === 'USD' ? '$' : '₦'}</span>
+            {total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
           </span>
         </li>
       </ul>

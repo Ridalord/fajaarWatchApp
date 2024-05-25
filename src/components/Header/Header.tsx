@@ -9,6 +9,7 @@ import useWishlist from '../hooks/useWishlist';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useCurrency from '../hooks/useCurrency';
+import AccountAccordion from './AccountAccordion';
 
 type PropTypes = {
   setShowNavMobile: React.Dispatch<React.SetStateAction<boolean>>,
@@ -21,7 +22,12 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
   const { totalCartItems } = useCart()
   const { totalWishlistItem } = useWishlist()
   const [fixed, setFixed] = useState(false)
-  const {toggleCurrency, currency}= useCurrency()
+  const { toggleCurrency, currency } = useCurrency()
+  const [open, setOpen] = useState(false)
+  const handleClickUser = (e) => {
+    e.preventDefault();
+    setOpen(prev=> !prev)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -147,10 +153,11 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
                       <Search />
                     </a>
                   </li>
-                  <li>
-                    <a href="account.html" className="fz-header-user-btn d-none d-lg-block">
+                  <li style={{ position: "relative"}}>
+                    <Link to="/account" onClick={handleClickUser} className="fz-header-user-btn d-none d-lg-block">
                       <FontAwesomeIcon icon={faUser} />
-                    </a>
+                    </Link>
+                    {open && <AccountAccordion/>}
                   </li>
                   <li>
                     <a role="button" onClick={handleWishlistClick} className="fz-header-wishlist-btn fz-header-cart-btn d-none d-lg-block">
