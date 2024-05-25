@@ -24,7 +24,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
   const [fixed, setFixed] = useState(false)
   const { toggleCurrency, currency } = useCurrency()
   const [open, setOpen] = useState(false)
-  const handleClickUser = (e) => {
+  const handleClickUser = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     setOpen(prev=> !prev)
   }
