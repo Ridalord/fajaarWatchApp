@@ -27,7 +27,7 @@ export default function CurrencyProvider({ children }: ChildrenType): ReactEleme
     toggleCurrency: toggleCurrency
   };
 
-  const BASE_URL = 'https://free.currconv.com/api/v7/convert?q=USD_NGN&compact=ultra&apiKey=f669aba4a07fadf920a6'
+  const BASE_URL = 'https://free.currconv.com/api/v7/convert?q=USD_NGN&compact=ultra&apiKey=1e925b54994ef6bd173a'
 
 
   useEffect(() => {
