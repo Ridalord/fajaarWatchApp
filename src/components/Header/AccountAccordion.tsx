@@ -2,14 +2,20 @@ import { Link } from "react-router-dom";
 import classes from "./Header.module.css"
 import useAuth from "../hooks/useAuth";
 
+type PropTypes = {
+  onClose: () => void,
+}
 
-export default function AccountAccordion() {
+export default function AccountAccordion({onClose}:PropTypes) {
   const { isLoggedIn } = useAuth()
-  console.log(isLoggedIn)
+  const handleLinkClick = () => {
+    onClose();
+  };
+
   return (
-    <ul className={`${classes.select} ${classes.accountAccordion}`}>
-      <li><Link to={"/account"}>{isLoggedIn?"Account":"Login"}</Link></li>
-      <li><Link to={"/account"}>{isLoggedIn? "Logout":"Signup"}</Link></li>
+    <ul className={`flex ${classes.select} ${classes.accountAccordion}`}>
+      <li><Link to={"/account"} onClick={handleLinkClick}>My Account</Link></li>
+      <li><Link to={"/account"} onClick={handleLinkClick}>{isLoggedIn ? "Logout" : "Sign In"}</Link></li>
     </ul>
-  )
+  );
 }

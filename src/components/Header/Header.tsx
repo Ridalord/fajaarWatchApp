@@ -2,32 +2,41 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelopeOpen, faHeart, faUser } from '@fortawesome/free-regular-svg-icons';
 import { Bag, Search, List } from "react-bootstrap-icons";
 import { faFacebookF, faTwitter, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import Logo7dark from "./logo-7-dark.png"
-import classes from "./Header.module.css"
+import Logo7dark from "./logo-7-dark.png";
+import classes from "./Header.module.css";
 import useCart from '../hooks/useCart';
 import useWishlist from '../hooks/useWishlist';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import useCurrency from '../hooks/useCurrency';
 import AccountAccordion from './AccountAccordion';
 
 type PropTypes = {
   setShowNavMobile: React.Dispatch<React.SetStateAction<boolean>>,
-  setShowSearchBar: React.Dispatch<React.SetStateAction<boolean>>
-  setShowCart: React.Dispatch<React.SetStateAction<boolean>>
+  setShowSearchBar: React.Dispatch<React.SetStateAction<boolean>>,
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>,
   setShowWishlist: React.Dispatch<React.SetStateAction<boolean>>
-}
+};
 
 export default function Header({ setShowNavMobile, setShowSearchBar, setShowWishlist, setShowCart }: PropTypes) {
-  const { totalCartItems } = useCart()
-  const { totalWishlistItem } = useWishlist()
-  const [fixed, setFixed] = useState(false)
-  const { toggleCurrency, currency } = useCurrency()
-  const [open, setOpen] = useState(false)
+  const { totalCartItems } = useCart();
+  const { totalWishlistItem } = useWishlist();
+  const [fixed, setFixed] = useState(false);
+  const { toggleCurrency, currency } = useCurrency();
+  const [open, setOpen] = useState(false);
+  const accordionRef = useRef<HTMLDivElement | null>(null);
+
   const handleClickUser = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
-    setOpen(prev=> !prev)
-  }
+    e.stopPropagation();
+    setOpen(prev => !prev);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (accordionRef.current && !accordionRef.current.contains(event.target as Node)) {
+      setOpen(false);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,27 +50,30 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
     };
 
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('click', handleClickOutside);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('click', handleClickOutside);
     };
   }, []);
 
   const handleMenuClick = () => {
-    setShowNavMobile(prev => !prev)
-  }
+    setShowNavMobile(prev => !prev);
+  };
 
   const handleClickSearch = () => {
-    setShowSearchBar(prev => !prev)
-  }
+    setShowSearchBar(prev => !prev);
+  };
 
   const handleClickCart = () => {
-    setShowCart(prev => !prev)
-  }
+    setShowCart(prev => !prev);
+  };
 
   const handleWishlistClick = () => {
-    setShowWishlist(prev => !prev)
-  }
+    setShowWishlist(prev => !prev);
+  };
+
   return (
     <header className="fz-header-section fz-1-header-section fz-7-header">
       <div className="top-header fz-7-top-header">
@@ -116,7 +128,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
                     <Link to="/" className="fz-nav-link"><span>home</span></Link>
                   </li>
                   <li className="fz-dropdown fz-nav-item">
-                    <Link to="/shop" className="fz-nav-link"><span>shop</span> </Link>
+                    <Link to="/shop" className="fz-nav-link"><span>shop</span></Link>
                   </li>
                   <li className="fz-dropdown fz-nav-item">
                     <a role="button" className="fz-nav-link"><span>pages</span> +</a>
@@ -130,7 +142,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
                     </ul>
                   </li>
                   <li className="fz-dropdown fz-nav-item">
-                    <a role="button" className="fz-nav-link">blog </a>
+                    <a role="button" className="fz-nav-link">blog</a>
                   </li>
                   <li className="fz-nav-item"><Link to="/contact" className="fz-nav-link">contact</Link></li>
                 </ul>
@@ -153,11 +165,15 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
                       <Search />
                     </a>
                   </li>
-                  <li style={{ position: "relative"}}>
+                  <li style={{ position: "relative" }}>
                     <Link to="/account" onClick={handleClickUser} className="fz-header-user-btn d-none d-lg-block">
                       <FontAwesomeIcon icon={faUser} />
                     </Link>
-                    {open && <AccountAccordion/>}
+                    {open && (
+                      <div ref={accordionRef}>
+                        <AccountAccordion onClose={() => setOpen(false)} />
+                      </div>
+                    )}
                   </li>
                   <li>
                     <a role="button" onClick={handleWishlistClick} className="fz-header-wishlist-btn fz-header-cart-btn d-none d-lg-block">
@@ -171,7 +187,11 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
                       <span className="count">{totalCartItems}</span>
                     </a>
                   </li>
-                  <li className="d-block d-lg-none"><a role="button" className="fz-hamburger" onClick={handleMenuClick}><List /></a></li>
+                  <li className="d-block d-lg-none">
+                    <a role="button" className="fz-hamburger" onClick={handleMenuClick}>
+                      <List />
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -179,5 +199,5 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
         </div>
       </div>
     </header>
-  )
+  );
 }
