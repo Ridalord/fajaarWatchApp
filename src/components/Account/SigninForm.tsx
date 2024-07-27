@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import useAuth from '../hooks/useAuth';
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export default function SigninForm() {
-  // const navigate = useNavigate();
-  const { dispatch, REDUCER_ACTIONS, currentUser, isLoggedIn } = useAuth()
+  const navigate = useNavigate();
+  const { dispatch, REDUCER_ACTIONS} = useAuth()
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -31,14 +31,14 @@ export default function SigninForm() {
       email: '',
       password: ''
     })
-    // navigate("/")
+    navigate("/")
   };
 
   // const handleLogOut = () => {
   //   dispatch({type:REDUCER_ACTIONS.LOGOUT})
   // }
 
-  console.log(currentUser, isLoggedIn)
+  // console.log(currentUser, isLoggedIn)
 
   return (
     <div className="col-lg-6 col-md-8 col-sm-9 col-10 col-xxs-12">

@@ -1,0 +1,50 @@
+.formContainer {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  transition: height 0.5s ease-in-out;
+}
+
+.formContainer .signin-form,
+.formContainer .signup-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.formContainer .show-signin .signin-form {
+  opacity: 1;
+  z-index: 1;
+}
+
+.formContainer .show-signin .signup-form {
+  opacity: 0;
+  z-index: 0;
+}
+
+.formContainer .show-signup .signin-form {
+  opacity: 0;
+  z-index: 0;
+}
+
+.formContainer .show-signup .signup-form {
+  opacity: 1;
+  z-index: 1;
+}
+
+.toggleLink {
+  margin-top: 1rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.toggleLink span {
+  /* color: blue; */
+  text-decoration: underline;
+}
