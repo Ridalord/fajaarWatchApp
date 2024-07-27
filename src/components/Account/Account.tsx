@@ -1,4 +1,5 @@
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+import SigninForm from "./SigninForm";
 import SignupForm from "./SignupForm";
 
 export default function Account() {
@@ -25,7 +26,8 @@ export default function Account() {
               </form>
             </div> */}
 
-            <SignupForm/>
+            <SignupForm />
+            <SigninForm/>
           </div>
         </div>
       </section>

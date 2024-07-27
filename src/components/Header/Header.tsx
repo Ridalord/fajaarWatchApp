@@ -10,6 +10,7 @@ import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import useCurrency from '../hooks/useCurrency';
 import AccountAccordion from './AccountAccordion';
+import useAuth from '../hooks/useAuth';
 
 type PropTypes = {
   setShowNavMobile: React.Dispatch<React.SetStateAction<boolean>>,
@@ -23,6 +24,7 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
   const { totalWishlistItem } = useWishlist();
   const [fixed, setFixed] = useState(false);
   const { toggleCurrency, currency } = useCurrency();
+  const {currentUser, isLoggedIn} = useAuth()
   const [open, setOpen] = useState(false);
   const accordionRef = useRef<HTMLDivElement | null>(null);
 
@@ -37,6 +39,8 @@ export default function Header({ setShowNavMobile, setShowSearchBar, setShowWish
       setOpen(false);
     }
   };
+
+  console.log(isLoggedIn, currentUser)
 
   useEffect(() => {
     const handleScroll = () => {

@@ -145,7 +145,7 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
       return { ...state, currentUser: updatedUser };
     }
     case REDUCER_ACTION_TYPE.LOAD_USER: {
-      let updatedState = { ...state }; // Create a copy of the current state
+      let updatedState = { ...state }; 
 
       onAuthStateChanged(auth, async (user) => {
         if (user) {
@@ -155,10 +155,11 @@ const reducer = (state: AuthStateType, action: ReducerAction ): AuthStateType =>
           if (docSnapshot.exists()) {
             const userData = docSnapshot.data() as UserType;
             // console.log(userData);
-            updatedState = { ...state, currentUser: userData, isLoggedIn: true }; // Update the local copy of state with the fetched user data
+            updatedState = { ...state, currentUser: userData, isLoggedIn: true }; 
             localStorage.setItem('updatedState', JSON.stringify(updatedState))
           }
         } else {
+
           updatedState = {
             ...state, currentUser: {
               id: '',
