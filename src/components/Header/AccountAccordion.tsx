@@ -12,13 +12,14 @@ export default function AccountAccordion({onClose}:PropTypes) {
     onClose();
   };
   const handleLogOut = () => {
-    dispatch({ type: REDUCER_ACTIONS.LOGOUT })
+    isLoggedIn && dispatch({ type: REDUCER_ACTIONS.LOGOUT });
     onClose()
   }
 
   return (
     <ul className={`flex ${classes.select} ${classes.accountAccordion}`}>
       <li><Link to={"/account"} onClick={handleLinkClick}>My Account {isLoggedIn && `(${currentUser.firstName})`}</Link></li>
+      {isLoggedIn && <li><Link to={"/account"} onClick={handleLinkClick}>My Orders</Link></li>}
       <li><Link to={"/account"} onClick={handleLogOut}>{isLoggedIn ? "Logout" : "Sign In"}</Link></li>
     </ul>
   );
